@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/gray">
+
+    <LinearLayout
+        android:id="@+id/crame"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@color/white">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_5dp"
+            android:text="拍照"
+            android:textSize="@dimen/default_18sp"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/select_photo"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="@dimen/default_1dp"
+        android:background="@color/white">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_5dp"
+            android:text="从相册中选择"
+            android:textSize="@dimen/default_18sp"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/imageView_close"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/default_10dp"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/share_close" />
+    </LinearLayout>
+</LinearLayout>

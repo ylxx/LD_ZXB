@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#009999</color>
+    <color name="colorPrimaryDark">#008888</color>
+    <color name="colorAccent">#009999</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="tint_black">#999999</color>
+    <color name="black_text">#6D6D6D</color>
+    <color name="red">#ff0000</color>
+    <color name="deep_red">#C04824</color>
+    <color name="blue">#2cb5c8</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="gray">#F8F8F8</color>
+    <color name="bg">#EDEDED</color>
+    <color name="title_blue">#0C6EB9</color>
+    <color name="title_green">#319905</color>
+    <color name="title_white">#FFFFFF</color>
+    <color name="dead_blue">#47A8E1</color>
+    <color name="dead_orange">#E9A044</color>
+    <color name="all_title">#DC3A0B</color>
+    <color name="gray_line">#F7F7F7</color>
+    <color name="text_color">#949494</color>
+    <color name="auth_code_button_blue">#6DD4FD</color>
+    <color name="gray_tv">#C9C9C9</color>
+    <color name="gray_text">#B4B4B4</color>
+    <color name="gray_home_title">#838383</color>
+    <color name="cor_c8c8c8">#ffc8c8c8</color>
+    <color name="cor_d7d7d7">#ffd7d7d7</color>
+
+    <item type="color" name="divider_gray">@color/cor_d7d7d7</item>
+    <item type="color" name="divider_line">@color/cor_d7d7d7</item>
+</resources>
