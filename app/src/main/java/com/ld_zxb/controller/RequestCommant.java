@@ -8,19 +8,6 @@ import com.ld_zxb.config.Constants;
 
 import android.content.Context;
 
-/**
- * <pre>
- * 业务名:
- * 功能说明: 
- * 编写日期:	2015年5月8日
- * 作者:	DC
- * 
- * 历史记录
- * 1、修改日期：
- *    修改人：
- *    修改内容： 
- * </pre>
- */
 public class RequestCommant {
 	//测试 请求列表
 	//6.1 登录验证接口

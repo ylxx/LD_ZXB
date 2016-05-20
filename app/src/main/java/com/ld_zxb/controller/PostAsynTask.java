@@ -26,19 +26,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-/**
- * <pre>
- * 业务名:网络请求 
- * 功能说明: 
- * 编写日期:	2015年5月16日
- * 作者:	zgz
- * 
- * 历史记录
- * 1、修改日期： 
- *    修改人：
- *    修改内容：
- * </pre>
- */
 public class PostAsynTask extends AsyncTask<Command, Integer, Message> {
 	private Dialog dialog;
 	private Command cmd;

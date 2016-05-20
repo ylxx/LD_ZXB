@@ -11,8 +11,8 @@ import android.widget.ImageView;
 
 import com.ld_zxb.R;
 import com.ld_zxb.activity.secondary.SearchActivity;
-import com.ld_zxb.fragment.InformationFragment;
 import com.ld_zxb.fragment.homepage.HomePageFragment;
+import com.ld_zxb.fragment.homepage.InformationFragment;
 import com.ld_zxb.fragment.homepage.MineFragment;
 import com.ld_zxb.utils.ClickUtil;
 
@@ -22,7 +22,6 @@ import java.util.List;
 import me.majiajie.pagerbottomtabstrip.Controller;
 import me.majiajie.pagerbottomtabstrip.PagerBottomTabLayout;
 import me.majiajie.pagerbottomtabstrip.TabItemBuilder;
-import me.majiajie.pagerbottomtabstrip.TabLayoutMode;
 import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectListener;
 
 public class MainActivity extends BaseFragmentActivity {
@@ -116,27 +115,27 @@ public class MainActivity extends BaseFragmentActivity {
     }
 
     private void BottomTabTest()
-    {
-        PagerBottomTabLayout pagerBottomTabLayout = (PagerBottomTabLayout) findViewById(R.id.tab);
+        {
+            PagerBottomTabLayout pagerBottomTabLayout = (PagerBottomTabLayout) findViewById(R.id.tab);
 
-        //用TabItemBuilder构建一个导航按钮
-        TabItemBuilder tabItemBuilder = new TabItemBuilder(this).create()
-                .setDefaultIcon(android.R.drawable.ic_menu_send)
-                .setText("课程")
-                .setSelectedColor(testColors[0])
+            //用TabItemBuilder构建一个导航按钮
+            TabItemBuilder tabItemBuilder = new TabItemBuilder(this).create()
+                    .setDefaultIcon(R.drawable.course_tb_course)
+                    .setDefaultColor(0xFF000000)
+                    .setText("课程")
+                    .setSelectedColor(0xFFF9B23E)
                 .setTag("A")
                 .build();
 
         //构建导航栏,得到Controller进行后续控制
         controller = pagerBottomTabLayout.builder()
                 .addTabItem(tabItemBuilder)
-                .addTabItem(android.R.drawable.ic_menu_compass, "资讯",testColors[0])
-                .addTabItem(android.R.drawable.ic_menu_search, "我的",testColors[0])
+                .addTabItem(R.drawable.course_tb_news, "资讯",0xFFF9B23E)
+                .addTabItem(R.drawable.course_tb_mine, "我的",0xFFF9B23E)
+                .setDefaultColor(0xFF000000)
 //                .setMode(TabLayoutMode.HIDE_TEXT)
 //                .setMode(TabLayoutMode.CHANGE_BACKGROUND_COLOR)
-                .setMode(TabLayoutMode.HIDE_TEXT| TabLayoutMode.CHANGE_BACKGROUND_COLOR)
                 .build();
-
 //        controller.setMessageNumber("A",2);
 //        controller.setDisplayOval(0,true);
 

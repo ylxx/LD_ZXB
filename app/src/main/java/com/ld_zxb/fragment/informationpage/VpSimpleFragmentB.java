@@ -2,7 +2,6 @@ package com.ld_zxb.fragment.informationpage;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +11,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.ld_zxb.R;
+import com.ld_zxb.fragment.BaseBackFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class VpSimpleFragmentB extends Fragment {
+public class VpSimpleFragmentB extends BaseBackFragment {
 
 	private View view;
 	private String mTitle;

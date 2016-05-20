@@ -4,28 +4,26 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.annotation.Nullable;
-
-import com.handmark.pulltorefresh.library.ILoadingLayout;
-import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
-
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.handmark.pulltorefresh.library.ILoadingLayout;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.ld_zxb.R;
+import com.ld_zxb.application.DCApplication;
 import com.ld_zxb.config.Constants;
 import com.ld_zxb.controller.BaseHandler;
 import com.ld_zxb.controller.RequestCommant;
+import com.ld_zxb.fragment.BaseBackFragment;
 import com.ld_zxb.utils.ShowErrorDialogUtil;
 import com.ld_zxb.view.FlashView;
 import com.ld_zxb.vo.HomePageBodyVo;
 import com.ld_zxb.vo.HomePageImageVo;
-import com.ld_zxb.application.DCApplication;
-import com.ld_zxb.fragment.BaseBackFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -64,9 +62,7 @@ public class HomePageFragment extends BaseBackFragment {
     }
 
     private void initView() {
-
         requestHomeData();
-
         mApplication = (DCApplication) getActivity().getApplication();
         mPullToRefreshListView = (PullToRefreshListView) view
                 .findViewById(R.id.gridview);
