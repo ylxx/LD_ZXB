@@ -8,6 +8,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.handmark.pulltorefresh.library.ILoadingLayout;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -41,7 +43,8 @@ public class HomePageFragment extends BaseBackFragment {
     private List<String> urls = new ArrayList<String>();
     //点击轮播图跳转路径
     private List<String> gotoUrls = new ArrayList<String>();
-
+    private ImageView ivSearch,ivToLogin;
+    TextView tv_text;
     private int currentPage = 1;
 
     private List<HomePageImageVo> lsBanner;
@@ -57,6 +60,12 @@ public class HomePageFragment extends BaseBackFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_homepage,null);
+        ivSearch = (ImageView) getActivity().findViewById(R.id.main_left_bar);
+        ivToLogin = (ImageView) getActivity().findViewById(R.id.main_right_bar);
+        tv_text = (TextView) getActivity().findViewById(R.id.main_title_bar);
+        ivToLogin.setVisibility(View.VISIBLE);
+        ivSearch.setVisibility(View.VISIBLE);
+        tv_text.setText("课程");
         initView();
         return view;
     }

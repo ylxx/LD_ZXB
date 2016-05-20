@@ -4,11 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.ld_zxb.R;
 import com.ld_zxb.activity.login.LoginActivity;
@@ -18,6 +19,8 @@ import com.ld_zxb.utils.ClickUtil;
 public class MineFragment extends BaseBackFragment {
     private Context mContext;
     Button but_login;
+    private ImageView ivSearch,ivToLogin;
+    TextView tv_text;
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -29,6 +32,12 @@ public class MineFragment extends BaseBackFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_me,null);
         but_login = (Button) view.findViewById(R.id.but_login);
+        ivSearch = (ImageView) getActivity().findViewById(R.id.main_left_bar);
+        ivToLogin = (ImageView) getActivity().findViewById(R.id.main_right_bar);
+        tv_text = (TextView) getActivity().findViewById(R.id.main_title_bar);
+        ivToLogin.setVisibility(View.INVISIBLE);
+        ivSearch.setVisibility(View.INVISIBLE);
+        tv_text.setText("我的");
         ClickUtil.setClickListener(listener, but_login);
         return view;
     }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#1A885B</color>
+    <color name="colorPrimary">#198458</color>
     <color name="colorPrimaryDark">#198458</color>
     <color name="colorAccent">#DEE3E6</color>
     //#DEE3E6
@@ -19,7 +19,7 @@
     <color name="title_white">#FFFFFF</color>
     <color name="dead_blue">#47A8E1</color>
     <color name="dead_orange">#E9A044</color>
-    <color name="all_title">#DC3A0B</color>
+    <color name="all_title">#1A885B</color>
     <color name="gray_line">#F7F7F7</color>
     <color name="text_color">#949494</color>
     <color name="auth_code_button_blue">#6DD4FD</color>

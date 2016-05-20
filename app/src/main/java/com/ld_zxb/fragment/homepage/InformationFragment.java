@@ -9,6 +9,8 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.handmark.pulltorefresh.library.ILoadingLayout;
@@ -37,7 +39,8 @@ public class InformationFragment extends BaseBackFragment {
     private List<VpSimpleFragment> mContents = new ArrayList<VpSimpleFragment>();
     private FragmentPagerAdapter mAdapter;
     private PullToRefreshListView mPullToRefreshListView;
-
+    private ImageView ivSearch,ivToLogin;
+    TextView tv_text;
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -48,6 +51,13 @@ public class InformationFragment extends BaseBackFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.information_pull,null);
+        ivSearch = (ImageView) getActivity().findViewById(R.id.main_left_bar);
+        ivToLogin = (ImageView) getActivity().findViewById(R.id.main_right_bar);
+        tv_text = (TextView) getActivity().findViewById(R.id.main_title_bar);
+        ivToLogin.setVisibility(View.INVISIBLE);
+        ivSearch.setVisibility(View.INVISIBLE);
+        tv_text.setText("资讯");
+        //
         mApplication = (DCApplication) getActivity().getApplication();
         mPullToRefreshListView = (PullToRefreshListView) view
                 .findViewById(R.id.gridview);

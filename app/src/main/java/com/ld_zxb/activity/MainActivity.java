@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.ld_zxb.R;
+import com.ld_zxb.activity.login.LoginActivity;
 import com.ld_zxb.activity.secondary.SearchActivity;
 import com.ld_zxb.fragment.homepage.HomePageFragment;
 import com.ld_zxb.fragment.homepage.InformationFragment;
@@ -81,24 +82,29 @@ public class MainActivity extends BaseFragmentActivity {
         ivSearch = (ImageView) findViewById(R.id.main_left_bar);
         ivToLogin = (ImageView) findViewById(R.id.main_right_bar);
 
-        ClickUtil.setClickListener(clickListener,ivSearch,ivToLogin);
+        ClickUtil.setClickListener(clicklistener,ivSearch,ivToLogin);
 
 
     }
 
-        private View.OnClickListener clickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                switch (v.getId())
-                {
-                    case R.id.main_left_bar :
-                        startActivity(new Intent(MainActivity.this, SearchActivity.class));
-                }
-
+    /**
+     * 监听事件
+     */
+    private View.OnClickListener clicklistener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.main_left_bar:
+                    startActivity(new Intent(MainActivity.this,SearchActivity.class));
+                    break;
+                case R.id.main_right_bar:
+                    startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                    break;
+                default:
+                    break;
             }
-        };
-
+        }
+    };
 
         private void initFragment()
     {
