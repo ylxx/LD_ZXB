@@ -7,6 +7,7 @@ import com.ld_zxb.config.Command;
 import com.ld_zxb.date.JsonVoParser;
 import com.ld_zxb.vo.BaseVo;
 import com.ld_zxb.vo.HomePageBodyVo;
+import com.ld_zxb.vo.HomePageBottomEntityVo;
 import com.ld_zxb.vo.UserLoginBodyVo;
 
 
@@ -56,7 +57,7 @@ public class Operation {
 	 * 
 	 * @param cmd
 	 * @return
-	 *//*
+	 */
 	@SuppressWarnings("unchecked")
 	public Message executeLogin(Command cmd) {
 		HashMap<String, String> hashMap = (HashMap<String, String>) cmd.param;
@@ -83,13 +84,12 @@ public class Operation {
 			} else {
 				cmd.success = false;
 				cmd.message = cmd.context
-						.getString(R.string.the_network_is_dead);HomePageBodyVo.java
+						.getString(R.string.the_network_is_dead);
 			}
 		}
 		msg.obj = cmd;
 		return msg;
 	}
-*/
 	/**
 	 *
 	 * 首页数据加载
@@ -244,7 +244,7 @@ public class Operation {
 	 * 首页考证分类信息
 	 * @param cmd
 	 * @return
-	 *//*
+	 */
 	@SuppressWarnings("unchecked")
 	public Message executeClassyExam(Command cmd) {
 		HashMap<String, String> hashMap = (HashMap<String, String>) cmd.param;
@@ -276,7 +276,7 @@ public class Operation {
 		return msg;
 
 	}
-	*//**
+	/**
 	 *
 	 * WebUrl
 	 * @param cmd

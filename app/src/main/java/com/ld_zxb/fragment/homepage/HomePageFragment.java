@@ -25,6 +25,8 @@ import com.ld_zxb.fragment.BaseBackFragment;
 import com.ld_zxb.utils.ShowErrorDialogUtil;
 import com.ld_zxb.view.FlashView;
 import com.ld_zxb.vo.HomePageBodyVo;
+import com.ld_zxb.vo.HomePageBottomEntityBodyVo;
+import com.ld_zxb.vo.HomePageBottomEntityVo;
 import com.ld_zxb.vo.HomePageImageVo;
 
 import java.util.ArrayList;
@@ -49,6 +51,8 @@ public class HomePageFragment extends BaseBackFragment {
 
     private List<HomePageImageVo> lsBanner;
     private String userId;
+    //bottom轮播图相关
+    private List<HomePageBottomEntityBodyVo.CourseList> courseLists;
 
     @Override
     public void onAttach(Context context) {
@@ -60,18 +64,21 @@ public class HomePageFragment extends BaseBackFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_homepage,null);
+        initView();
+        return view;
+    }
+
+    private void initView() {
         ivSearch = (ImageView) getActivity().findViewById(R.id.main_left_bar);
         ivToLogin = (ImageView) getActivity().findViewById(R.id.main_right_bar);
         tv_text = (TextView) getActivity().findViewById(R.id.main_title_bar);
         ivToLogin.setVisibility(View.VISIBLE);
         ivSearch.setVisibility(View.VISIBLE);
         tv_text.setText("课程");
-        initView();
-        return view;
-    }
-
-    private void initView() {
+        //访问轮播图接口
         requestHomeData();
+        //访问推荐课程接口
+        requestKaoZheng();
         mApplication = (DCApplication) getActivity().getApplication();
         mPullToRefreshListView = (PullToRefreshListView) view
                 .findViewById(R.id.gridview);
@@ -141,6 +148,16 @@ public class HomePageFragment extends BaseBackFragment {
         new RequestCommant().requestHomeData(new ReauestHandler(this), getActivity(), hashmap);
     }
 
+    /**
+     * 加载考证分类信息
+     */
+    private void requestKaoZheng() {
+        HashMap<String, String> hashMap = new HashMap<String, String>();
+        hashMap.put("currentPage", "1");
+        hashMap.put("sellType", "PACKAGE");
+        new RequestCommant().requestClassyExam(new ReauestHandler(this),getActivity(),hashMap);
+    }
+
     private class ReauestHandler extends BaseHandler {
 
         public ReauestHandler(Fragment fragment) {
@@ -180,12 +197,13 @@ public class HomePageFragment extends BaseBackFragment {
                         ShowErrorDialogUtil.showErrorDialog(getActivity(),(String) command.message);; // 請求失敗
                     }
                 }
-                /*if (msg.what == Constants.CLASSY_EXAM) {
+                if (msg.what == Constants.CLASSY_EXAM) {
                     if (command.success) {
                         if(null != command.resData){
                             HomePageBottomEntityVo homePageBottomEntityVo = (HomePageBottomEntityVo)command.resData;
                             courseLists = homePageBottomEntityVo.getEntity().getCourseList();
-                            if(courseLists!=null){
+
+                            /*if(courseLists!=null){
                                 for (int i = 0; i < courseLists.size(); i++) {
                                     //轮播图文字
                                     String titleString = courseLists.get(i).getName();
@@ -200,13 +218,13 @@ public class HomePageFragment extends BaseBackFragment {
                                 System.out.println("bottomTitles"+bottomTitles);
                                 //								mFlashViewBottom.setTitleString(bottomTitles);
                                 //								flName.setText(bottomName);
-                            }
+                            }*/
 
                         }
                     } else {
                         ShowErrorDialogUtil.showErrorDialog(getActivity(),(String) command.message);; // 請求失敗
                     }
-                }*/
+                }
             }
         }
     }

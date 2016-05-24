@@ -155,9 +155,9 @@ public class PostAsynTask extends AsyncTask<Command, Integer, Message> {
 	private Message execute(Command command) {
 		Operation operation = new Operation();
 		// 登录
-//		if (Constants.LOGIN == command.commandID) {
-//			return operation.executeLogin(command);
-//		}
+		if (Constants.LOGIN == command.commandID) {
+			return operation.executeLogin(command);
+		}
 		//首页数据加载
 		if(Constants.HOME_DATA==command.commandID){
 			return operation.executeHomeData(command);
@@ -174,10 +174,10 @@ public class PostAsynTask extends AsyncTask<Command, Integer, Message> {
 //		if(Constants.SHAKE_LIMIT==command.commandID){
 //			return operation.executeShakeLimit(command);
 //		}
-//		//首页考证分类加载
-//		if(Constants.CLASSY_EXAM==command.commandID){
-//			return operation.executeClassyExam(command);
-//		}
+		//首页考证分类加载
+		if(Constants.CLASSY_EXAM==command.commandID){
+			return operation.executeClassyExam(command);
+		}
 //		// 忘记密码
 //		if (Constants.FORGET_PWD == command.commandID) {
 //			return operation.executeForgetPwd(command);

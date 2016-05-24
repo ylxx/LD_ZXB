@@ -52,4 +52,6 @@
 
     <uses-feature android:name="android.hardware.camera" />
 
+    <uses-library android:name="com.google.android.maps" />
+
 </manifest>

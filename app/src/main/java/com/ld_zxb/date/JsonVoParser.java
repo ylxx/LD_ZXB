@@ -3,7 +3,9 @@ package com.ld_zxb.date;
 
 import com.ld_zxb.vo.BaseVo;
 import com.ld_zxb.vo.HomePageBodyVo;
+import com.ld_zxb.vo.HomePageBottomEntityVo;
 import com.ld_zxb.vo.RegisterVo;
+import com.ld_zxb.vo.UserLoginBodyVo;
 
 public class JsonVoParser {
 	private static JsonVoParser _jsonVoParser;
@@ -32,18 +34,18 @@ public class JsonVoParser {
 	/*
 	 * 登陆的解析
 	 */
-	//	public UserLoginBodyVo getUserLoginBodyVo(String json){
-	//		return jsonBinder.fromJson(json, UserLoginBodyVo.class);
-	//	}
+		public UserLoginBodyVo getUserLoginBodyVo(String json){
+			return jsonBinder.fromJson(json, UserLoginBodyVo.class);
+		}
 
 		//首页加载
 		public HomePageBodyVo gethoHomePageBodyVo(String json){
 			return jsonBinder.fromJson(json, HomePageBodyVo.class);
 		}
-	//	//首页bottom加载
-	//	public HomePageBottomEntityVo getHomePageBottomEntityVo(String json){
-	//		return jsonBinder.fromJson(json, HomePageBottomEntityVo.class);
-	//	}
+		//首页bottom加载
+		public HomePageBottomEntityVo getHomePageBottomEntityVo(String json){
+			return jsonBinder.fromJson(json, HomePageBottomEntityVo.class);
+		}
 	//	//考证页加载
 	//	public ExamPageEntityVo getExamPageEntityVo(String json){
 	//		return jsonBinder.fromJson(json, ExamPageEntityVo.class);
