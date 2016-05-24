@@ -13,9 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.handmark.pulltorefresh.library.ILoadingLayout;
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.ld_zxb.R;
 import com.ld_zxb.application.DCApplication;
 import com.ld_zxb.fragment.BaseBackFragment;
@@ -38,7 +35,6 @@ public class InformationFragment extends BaseBackFragment {
     private List<String> mTitles = Arrays.asList("政策解读", "行业新闻", "IFM考试资讯");
     private List<VpSimpleFragment> mContents = new ArrayList<VpSimpleFragment>();
     private FragmentPagerAdapter mAdapter;
-    private PullToRefreshListView mPullToRefreshListView;
     private ImageView ivSearch,ivToLogin;
     TextView tv_text;
     @Override
@@ -50,46 +46,15 @@ public class InformationFragment extends BaseBackFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.information_pull,null);
+        //fragment_info是模拟数据，info_pull是下拉数据
+        view = inflater.inflate(R.layout.fragment_information,null);
         ivSearch = (ImageView) getActivity().findViewById(R.id.main_left_bar);
         ivToLogin = (ImageView) getActivity().findViewById(R.id.main_right_bar);
         tv_text = (TextView) getActivity().findViewById(R.id.main_title_bar);
         ivToLogin.setVisibility(View.INVISIBLE);
         ivSearch.setVisibility(View.INVISIBLE);
         tv_text.setText("资讯");
-        //
-        mApplication = (DCApplication) getActivity().getApplication();
-        mPullToRefreshListView = (PullToRefreshListView) view
-                .findViewById(R.id.gridview);
-        mPullToRefreshListView.getRefreshableView().addHeaderView(View.inflate(getActivity(),R.layout.fragment_information,null));
-        mPullToRefreshListView.setMode(PullToRefreshBase.Mode.BOTH);
-        ILoadingLayout loadingLayoutProxy = mPullToRefreshListView
-                .getLoadingLayoutProxy(true, false);
-        loadingLayoutProxy.setPullLabel("下拉刷新...");// 刚下拉时，显示的提示
-        loadingLayoutProxy.setRefreshingLabel("正在刷新...");// 刷新时
-        loadingLayoutProxy.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
-        ILoadingLayout loadingLayoutProxyBottom = mPullToRefreshListView
-                .getLoadingLayoutProxy(false, true);
-        loadingLayoutProxyBottom.setPullLabel("上拉加载更多...");// 刚下拉时，显示的提示
-        loadingLayoutProxyBottom.setRefreshingLabel("正在载入...");// 刷新时
-        loadingLayoutProxyBottom.setReleaseLabel("放开加载更多...");// 下来达到一定距离时，显示的提示
 
-        mPullToRefreshListView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2() {
-
-            @Override
-            public void onPullDownToRefresh(PullToRefreshBase refreshView) {
-//                reSetPullToRefreshGridView();
-//                requestDoctorListpageNo();
-
-            }
-
-            @Override
-            public void onPullUpToRefresh(PullToRefreshBase refreshView) {
-//                urls.clear();
-//                requestDoctorListpageNo();
-
-            }
-        });
         initViews();
         initDatas();
         mIndictor.setVisiableTabCount(3);
@@ -152,7 +117,6 @@ public class InformationFragment extends BaseBackFragment {
     private void initViews() {
         mViewPager = (ViewPager) view.findViewById(R.id.id_viewPager);
         mIndictor = (ViewPagerIndictor) view.findViewById(R.id.id_indictor);
-
     }
     /**初始化系统自带adapter*/
     private void initDatas() {

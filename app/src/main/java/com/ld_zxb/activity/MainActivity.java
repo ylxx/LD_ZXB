@@ -84,7 +84,6 @@ public class MainActivity extends BaseFragmentActivity {
 
         ClickUtil.setClickListener(clicklistener,ivSearch,ivToLogin);
 
-
     }
 
     /**

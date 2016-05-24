@@ -1,8 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.ld_zxb.activity.secondary.SearchActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/black">
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/search_bg"
+            android:layout_marginLeft="@dimen/default_10dp"
+            android:hint="您想查看什么课程呢"
+            android:drawableLeft="@drawable/search_icon"
+            android:textColorHint="@color/white"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="@dimen/default_18sp"
+            android:layout_marginLeft="@dimen/default_15dp"
+            android:text="取消"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_10dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="IFM一级"
+            android:gravity="center"
+            android:background="@drawable/search_data_bg"
+            android:textColor="@color/black" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="IFM二级"
+            android:gravity="center"
+            android:background="@drawable/search_data_bg"
+            android:textColor="@color/black" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="IFM三级"
+            android:gravity="center"
+            android:background="@drawable/search_data_bg"
+            android:textColor="@color/black" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_10dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="快递员课程"
+            android:gravity="center"
+            android:background="@drawable/search_data_bg"
+            android:textColor="@color/black" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="职业道德"
+            android:gravity="center"
+            android:background="@drawable/search_data_bg"
+            android:textColor="@color/black" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="财务管理理论"
+            android:gravity="center"
+            android:background="@drawable/search_data_bg"
+            android:textColor="@color/black" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_10dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="风险管理"
+            android:gravity="center"
+            android:background="@drawable/search_data_bg"
+            android:textColor="@color/black" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="企业并购与重组"
+            android:gravity="center"
+            android:background="@drawable/search_data_bg"
+            android:textColor="@color/black" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="预算管理"
+            android:gravity="center"
+            android:background="@drawable/search_data_bg"
+            android:textColor="@color/black" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_10dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="纳税管理"
+            android:gravity="center"
+            android:background="@drawable/search_data_bg"
+            android:textColor="@color/black" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="金融工具"
+            android:gravity="center"
+            android:background="@drawable/search_data_bg"
+            android:textColor="@color/black" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="公司战略"
+            android:gravity="center"
+            android:background="@drawable/search_data_bg"
+            android:textColor="@color/black" />
+    </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

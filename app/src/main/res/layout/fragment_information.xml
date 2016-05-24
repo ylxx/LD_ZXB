@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:layout_height="wrap_content"
     tools:context=".fragment.homepage.InformationFragment">
+
     <com.ld_zxb.view.ViewPagerIndictor
         android:id="@+id/id_indictor"
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:background="#ffffffff"
-        android:orientation="horizontal"
-        tools:visible_tab_count="3" >
+        android:orientation="horizontal">
     </com.ld_zxb.view.ViewPagerIndictor>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/id_viewPager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="match_parent"
+        android:layout_below="@+id/id_indictor">
     </android.support.v4.view.ViewPager>
-</LinearLayout>
+
+
+</RelativeLayout>

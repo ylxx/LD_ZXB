@@ -10,7 +10,11 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.handmark.pulltorefresh.library.ILoadingLayout;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.ld_zxb.R;
+import com.ld_zxb.application.DCApplication;
 import com.ld_zxb.fragment.BaseBackFragment;
 
 import java.util.ArrayList;
@@ -25,7 +29,8 @@ public class VpSimpleFragmentB extends BaseBackFragment {
 	private int position;
 	private static final String BUNDLE_TITLE = "title";
 	private List<Map<String, Object>> data;
-
+	private PullToRefreshListView mPullToRefreshListView;
+	private DCApplication mApplication;
 	//	@Override
 	//	public void onAttach(Activity activity) {
 	//		// TODO Auto-generated method stub
@@ -51,11 +56,48 @@ public class VpSimpleFragmentB extends BaseBackFragment {
 			position=bundle.getInt("position");
 		}
 		data = getData();
-		view = inflater.inflate(R.layout.information_data, null);
+		view = inflater.inflate(R.layout.information_pull, null);
+		bindViews();
 		ListView li = (ListView) view.findViewById(R.id.informationdata);
 		mApdater mapdater = new mApdater(getActivity());
-		li.setAdapter(mapdater);
+//		li.setAdapter(mapdater);
+		mPullToRefreshListView.setAdapter(mapdater);
 		return view;
+	}
+	private void bindViews() {
+		//下拉刷新
+		mApplication = (DCApplication) getActivity().getApplication();
+		mPullToRefreshListView = (PullToRefreshListView) view
+				.findViewById(R.id.gridview);
+//		mPullToRefreshListView.getRefreshableView().addHeaderView(View.inflate(getActivity(),R.layout.fragment_information,null));
+		mPullToRefreshListView.setMode(PullToRefreshBase.Mode.BOTH);
+		ILoadingLayout loadingLayoutProxy = mPullToRefreshListView
+				.getLoadingLayoutProxy(true, false);
+		loadingLayoutProxy.setPullLabel("下拉刷新...");// 刚下拉时，显示的提示
+		loadingLayoutProxy.setRefreshingLabel("正在刷新...");// 刷新时
+		loadingLayoutProxy.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
+		ILoadingLayout loadingLayoutProxyBottom = mPullToRefreshListView
+				.getLoadingLayoutProxy(false, true);
+		loadingLayoutProxyBottom.setPullLabel("上拉加载更多...");// 刚下拉时，显示的提示
+		loadingLayoutProxyBottom.setRefreshingLabel("正在载入...");// 刷新时
+		loadingLayoutProxyBottom.setReleaseLabel("放开加载更多...");// 下来达到一定距离时，显示的提示
+
+		mPullToRefreshListView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2() {
+
+			@Override
+			public void onPullDownToRefresh(PullToRefreshBase refreshView) {
+//                reSetPullToRefreshGridView();
+//                requestDoctorListpageNo();
+
+			}
+
+			@Override
+			public void onPullUpToRefresh(PullToRefreshBase refreshView) {
+//                urls.clear();
+//                requestDoctorListpageNo();
+
+			}
+		});
 	}
 
 	public static VpSimpleFragmentB newInstance(String title,int position) {
@@ -116,7 +158,6 @@ public class VpSimpleFragmentB extends BaseBackFragment {
 				view.setTag(viewHolder);
 			}else{
 				viewHolder = (ViewHolder) view.getTag();
-
 			}
 			viewHolder.info_icon.setBackgroundResource((Integer)data.get(position).get("img"));
 			viewHolder.tv_title.setText((String)data.get(position).get("title"));
