@@ -45,8 +45,8 @@ public class FlashView extends FrameLayout implements OnGestureListener {
 	private LinearLayout mLinearLayout;// 点的线性布局
 	private ViewPager mViewPager;
 	private FlashViewListener mFlashViewListener;// 向外提供接口
-	private int dot2 = R.drawable.circle_show;// 选中点的 当前图片
-	private int dot1 = R.drawable.circle_hide;// 没选中点
+	private int dot1 = R.drawable.circle_show;// 选中点的 当前图片
+	private int dot2 = R.drawable.circle_hide;// 没选中点
 	private int dotMargin = 25;// 点之间的间隙 单位 是px
 	private MyPagerAdapter adapter;
 	private LinearLayout.LayoutParams lp;

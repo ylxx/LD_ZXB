@@ -17,6 +17,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.ld_zxb.R;
+import com.ld_zxb.adapter.HomePageAdapter;
 import com.ld_zxb.application.DCApplication;
 import com.ld_zxb.config.Constants;
 import com.ld_zxb.controller.BaseHandler;
@@ -47,12 +48,12 @@ public class HomePageFragment extends BaseBackFragment {
     private List<String> gotoUrls = new ArrayList<String>();
     private ImageView ivSearch,ivToLogin;
     TextView tv_text;
-    private int currentPage = 1;
+    private HomePageAdapter adapter;
 
     private List<HomePageImageVo> lsBanner;
     private String userId;
     //bottom轮播图相关
-    private List<HomePageBottomEntityBodyVo.CourseList> courseLists;
+    private List<HomePageBottomEntityBodyVo.CourseList> courseLists = new ArrayList<HomePageBottomEntityBodyVo.CourseList>();
 
     @Override
     public void onAttach(Context context) {
@@ -75,43 +76,31 @@ public class HomePageFragment extends BaseBackFragment {
         ivToLogin.setVisibility(View.VISIBLE);
         ivSearch.setVisibility(View.VISIBLE);
         tv_text.setText("课程");
-        //访问轮播图接口
-        requestHomeData();
-        //访问推荐课程接口
-        requestKaoZheng();
         mApplication = (DCApplication) getActivity().getApplication();
         mPullToRefreshListView = (PullToRefreshListView) view
                 .findViewById(R.id.gridview);
         mPullToRefreshListView.getRefreshableView().addHeaderView(View.inflate(getActivity(),R.layout.header_homepagefragmen,null));
         mPullToRefreshListView.setMode(Mode.BOTH);
 
-
-
-
         ILoadingLayout loadingLayoutProxy = mPullToRefreshListView
                 .getLoadingLayoutProxy(true, false);
         loadingLayoutProxy.setPullLabel("下拉刷新...");// 刚下拉时，显示的提示
         loadingLayoutProxy.setRefreshingLabel("正在刷新...");// 刷新时
         loadingLayoutProxy.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
-        ILoadingLayout loadingLayoutProxyBottom = mPullToRefreshListView
-                .getLoadingLayoutProxy(false, true);
-        loadingLayoutProxyBottom.setPullLabel("上拉加载更多...");// 刚下拉时，显示的提示
-        loadingLayoutProxyBottom.setRefreshingLabel("正在载入...");// 刷新时
-        loadingLayoutProxyBottom.setReleaseLabel("放开加载更多...");// 下来达到一定距离时，显示的提示
 
         mPullToRefreshListView.setOnRefreshListener(new OnRefreshListener2() {
 
             @Override
             public void onPullDownToRefresh(PullToRefreshBase refreshView) {
-//                reSetPullToRefreshGridView();
-//                requestDoctorListpageNo();
+                reSetPullToRefreshGridView();
+                getData();
 
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase refreshView) {
-//                urls.clear();
-//                requestDoctorListpageNo();
+                mPullToRefreshListView.onRefreshComplete();
+//                getData();
 
             }
         });
@@ -133,6 +122,31 @@ public class HomePageFragment extends BaseBackFragment {
                                               }
                                           }
         );*/
+
+
+        reSetPullToRefreshGridView();
+
+        getData();
+
+
+    }
+
+    private void getData() {
+        //访问轮播图接口
+        requestHomeData();
+        //访问推荐课程接口
+        requestKaoZheng();
+
+
+    }
+
+
+    // private CircleIndicator mCiBanner;
+
+    private void reSetPullToRefreshGridView() {
+        urls.clear();
+        courseLists.clear();
+        mPullToRefreshListView.setMode(Mode.BOTH);
 
     }
 
@@ -199,9 +213,16 @@ public class HomePageFragment extends BaseBackFragment {
                 }
                 if (msg.what == Constants.CLASSY_EXAM) {
                     if (command.success) {
+                        mPullToRefreshListView.onRefreshComplete();
                         if(null != command.resData){
                             HomePageBottomEntityVo homePageBottomEntityVo = (HomePageBottomEntityVo)command.resData;
                             courseLists = homePageBottomEntityVo.getEntity().getCourseList();
+
+                            adapter = new HomePageAdapter(getActivity(), courseLists);
+                            mPullToRefreshListView.setAdapter(adapter);
+
+
+//                            adapter.notifyDataSetChanged();
 
                             /*if(courseLists!=null){
                                 for (int i = 0; i < courseLists.size(); i++) {

@@ -9,10 +9,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@drawable/cricle_rec_doctor"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginBottom="@dimen/margin_10"
+        android:layout_marginLeft="@dimen/default_5dp"
+        android:background="@drawable/shape_circle_white"
         android:orientation="vertical" >
 
         <ImageView
@@ -29,25 +28,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/default_5dp"
             android:text="课程"
             android:ellipsize="end"
             android:singleLine="true"
-            android:textColor="@color/all_title"
-            android:textSize="18sp" />
+            android:textColor="@color/black"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/course_teacher1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/default_5dp"
+            android:layout_marginBottom="@dimen/default_5dp"
             android:ellipsize="end"
             android:singleLine="true"
             android:text="主讲："
-            android:textColor="@color/text_black_shallow"
+            android:textColor="@color/black"
             android:textSize="12sp" />
 
 
@@ -57,14 +55,14 @@
 	    android:layout_height="match_parent"
 	    android:background="#00ffffff"/>
     <LinearLayout
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginBottom="2dp"
         android:id="@+id/ll2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@drawable/cricle_rec_doctor"
+        android:layout_marginBottom="@dimen/margin_10"
+        android:layout_marginLeft="@dimen/default_5dp"
+        android:layout_marginRight="@dimen/default_5dp"
+        android:background="@drawable/shape_circle_white"
         android:orientation="vertical" >
 
         <ImageView
@@ -81,25 +79,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/default_5dp"
             android:text="课程"
             android:ellipsize="end"
             android:singleLine="true"
-            android:textColor="@color/all_title"
-            android:textSize="18sp" />
+            android:textColor="@color/black"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/course_teacher2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/default_5dp"
+            android:layout_marginBottom="@dimen/default_5dp"
             android:ellipsize="end"
             android:singleLine="true"
             android:text="主讲："
-            android:textColor="@color/text_black_shallow"
+            android:textColor="@color/black"
             android:textSize="12sp" />
 
     </LinearLayout>
