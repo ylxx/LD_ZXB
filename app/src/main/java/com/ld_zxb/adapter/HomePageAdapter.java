@@ -1,6 +1,7 @@
 package com.ld_zxb.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ld_zxb.R;
+import com.ld_zxb.activity.course.CourseDetailsActivty;
 import com.ld_zxb.vo.HomePageBottomEntityBodyVo;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -71,7 +73,7 @@ public class HomePageAdapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup parent)
+    public View getView(final int position, View view, ViewGroup parent)
     {
         final ViewHolder holder;
         if (view == null) {
@@ -86,7 +88,9 @@ public class HomePageAdapter extends BaseAdapter{
             holder.ll.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(context,"11111",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,String.valueOf(position*2),Toast.LENGTH_SHORT).show();
+                    context.startActivity(new Intent(context, CourseDetailsActivty.class));
+
                 }
             });
 
@@ -97,7 +101,7 @@ public class HomePageAdapter extends BaseAdapter{
             holder.ll2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(context,"22222",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,String.valueOf(position*2+1),Toast.LENGTH_SHORT).show();
                 }
             });
 

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bkcolor"
+    tools:context="com.ld_zxb.activity.course.CourseDetailsActivty">
+
+
+    <RelativeLayout
+        android:id="@+id/rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/default_150dp"
+        android:background="@drawable/default_picture">
+
+        <TextView
+            android:id="@+id/tv_coursedetail_teacher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/default_10dp"
+            android:layout_marginBottom="@dimen/default_5dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:text="主讲老师："
+            android:textColor="@color/black"
+            android:textSize="@dimen/default_15sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_above="@+id/tv_coursedetail_teacher"
+            android:text="财务管理理论与实务"
+            android:textSize="@dimen/default_18sp"
+            android:textColor="@color/black"/>
+
+    </RelativeLayout>
+
+    <WebView
+        android:id="@+id/wv_coursedetails"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/default_80dp"
+        android:background="@color/blue"
+        android:layout_below="@+id/rl">
+    </WebView>
+
+    <RelativeLayout
+        android:id="@+id/rl2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/wv_coursedetails"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/introduction_playvideo_down"
+            android:layout_centerInParent="true"/>
+        <ImageView
+            android:id="@+id/iv_coursedetails_evaluate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/default_10dp"
+            android:src="@drawable/introduction_evaluate"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+             />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/default_10dp"
+            android:layout_toLeftOf="@id/iv_coursedetails_evaluate"
+            android:src="@drawable/introduction_collection"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl2"
+        >
+        <com.ld_zxb.view.ViewPagerIndictor
+            android:id="@+id/id_coursedetail_indictor"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:orientation="horizontal">
+        </com.ld_zxb.view.ViewPagerIndictor>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/id_coursedetail_viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/id_indictor">
+        </android.support.v4.view.ViewPager>
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
