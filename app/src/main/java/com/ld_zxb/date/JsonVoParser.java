@@ -4,6 +4,7 @@ package com.ld_zxb.date;
 import com.ld_zxb.vo.BaseVo;
 import com.ld_zxb.vo.HomePageBodyVo;
 import com.ld_zxb.vo.HomePageBottomEntityVo;
+import com.ld_zxb.vo.MyPurchaseCourseEntityVo;
 import com.ld_zxb.vo.RegisterVo;
 import com.ld_zxb.vo.UserLoginBodyVo;
 
@@ -70,10 +71,10 @@ public class JsonVoParser {
 	//	public ParticularCourseEntityVo getParticularCourseEntityvo(String json){
 	//		return jsonBinder.fromJson(json, ParticularCourseEntityVo.class);
 	//	}
-	//	//已购买课程列表
-	//	public MyPurchaseCourseEntityVo getMyPurchaseCourseEntityVo(String json){
-	//		return jsonBinder.fromJson(json, MyPurchaseCourseEntityVo.class);
-	//	}
+		//已购买课程列表
+		public MyPurchaseCourseEntityVo getMyPurchaseCourseEntityVo(String json){
+			return jsonBinder.fromJson(json, MyPurchaseCourseEntityVo.class);
+		}
 	//	//收藏课程列表
 	//	public CollectCourseEntityVo getCollectCourseEntityVo(String json){
 	//		return jsonBinder.fromJson(json, CollectCourseEntityVo.class);

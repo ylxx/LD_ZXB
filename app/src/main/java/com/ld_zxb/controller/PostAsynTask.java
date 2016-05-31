@@ -198,10 +198,10 @@ public class PostAsynTask extends AsyncTask<Command, Integer, Message> {
 //		if(Constants.GET_AUDITION_COURSE == command.commandID){
 //			return operation.executeGetAuditionCourse(command);
 //		}
-//		//获取已购买课程
-//		if(Constants.GET_PURCHASE_COURSE == command.commandID){
-//			return operation.executeGetPurchaseCourse(command);
-//		}
+		//获取已购买课程
+		if(Constants.GET_PURCHASE_COURSE == command.commandID){
+			return operation.executeGetPurchaseCourse(command);
+		}
 //		//获取收藏课程
 //		if(Constants.GET_COLLECT_COURSE == command.commandID){
 //			return operation.executeGetCollectCourse(command);

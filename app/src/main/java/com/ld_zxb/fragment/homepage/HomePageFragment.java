@@ -1,6 +1,8 @@
 package com.ld_zxb.fragment.homepage;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.annotation.Nullable;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.handmark.pulltorefresh.library.ILoadingLayout;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -17,14 +20,20 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.ld_zxb.R;
+import com.ld_zxb.activity.MainActivity;
+import com.ld_zxb.activity.login.LoginActivity;
+import com.ld_zxb.activity.secondary.SearchActivity;
+import com.ld_zxb.activity.secondary.WebEmbedActivity;
 import com.ld_zxb.adapter.HomePageAdapter;
 import com.ld_zxb.application.DCApplication;
 import com.ld_zxb.config.Constants;
 import com.ld_zxb.controller.BaseHandler;
 import com.ld_zxb.controller.RequestCommant;
 import com.ld_zxb.fragment.BaseBackFragment;
+import com.ld_zxb.utils.ClickUtil;
 import com.ld_zxb.utils.ShowErrorDialogUtil;
 import com.ld_zxb.view.FlashView;
+import com.ld_zxb.view.FlashViewListener;
 import com.ld_zxb.vo.HomePageBodyVo;
 import com.ld_zxb.vo.HomePageBottomEntityBodyVo;
 import com.ld_zxb.vo.HomePageBottomEntityVo;
@@ -47,7 +56,7 @@ public class HomePageFragment extends BaseBackFragment {
     //点击轮播图跳转路径
     private List<String> gotoUrls = new ArrayList<String>();
     private ImageView ivSearch,ivToLogin;
-    TextView tv_text;
+    private TextView tv_text;
     private HomePageAdapter adapter;
 
     private List<HomePageImageVo> lsBanner;
@@ -70,17 +79,15 @@ public class HomePageFragment extends BaseBackFragment {
     }
 
     private void initView() {
-        ivSearch = (ImageView) getActivity().findViewById(R.id.main_left_bar);
-        ivToLogin = (ImageView) getActivity().findViewById(R.id.main_right_bar);
-        tv_text = (TextView) getActivity().findViewById(R.id.main_title_bar);
-        ivToLogin.setVisibility(View.VISIBLE);
-        ivSearch.setVisibility(View.VISIBLE);
-        tv_text.setText("课程");
+        ivSearch = (ImageView) view.findViewById(R.id.homepage_left_bar);
+        ivToLogin = (ImageView) view.findViewById(R.id.homepage_right_bar);
         mApplication = (DCApplication) getActivity().getApplication();
         mPullToRefreshListView = (PullToRefreshListView) view
                 .findViewById(R.id.gridview);
         mPullToRefreshListView.getRefreshableView().addHeaderView(View.inflate(getActivity(),R.layout.header_homepagefragmen,null));
         mPullToRefreshListView.setMode(Mode.BOTH);
+
+        ClickUtil.setClickListener(clicklistener,ivSearch,ivToLogin);
 
         ILoadingLayout loadingLayoutProxy = mPullToRefreshListView
                 .getLoadingLayoutProxy(true, false);
@@ -88,7 +95,14 @@ public class HomePageFragment extends BaseBackFragment {
         loadingLayoutProxy.setRefreshingLabel("正在刷新...");// 刷新时
         loadingLayoutProxy.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
 
-        mPullToRefreshListView.setOnRefreshListener(new OnRefreshListener2() {
+        ILoadingLayout endLabels = mPullToRefreshListView.getLoadingLayoutProxy(false,
+                true);
+        endLabels.setPullLabel("上拉加载...");// 刚下拉时，显示的提示
+        endLabels.setRefreshingLabel("正在载入...");// 刷新时
+        endLabels.setReleaseLabel("屏幕上拉,显示更多");// 下来达到一定距离时，显示的提示
+
+
+        mPullToRefreshListView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2() {
 
             @Override
             public void onPullDownToRefresh(PullToRefreshBase refreshView) {
@@ -99,14 +113,14 @@ public class HomePageFragment extends BaseBackFragment {
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase refreshView) {
-                mPullToRefreshListView.onRefreshComplete();
-//                getData();
 
+                reSetPullToRefreshGridView();
+                getData();
             }
         });
 
         mFlashView = (FlashView) view.findViewById(R.id.flashview);
-        /*mFlashView.setOnFlashViewListener(new FlashViewListener() {
+        mFlashView.setOnFlashViewListener(new FlashViewListener() {
                                               @Override
                                               public void onClick(int position) {
                                                   String url = gotoUrls.get(position);
@@ -121,7 +135,7 @@ public class HomePageFragment extends BaseBackFragment {
                                                   startActivity(intent);
                                               }
                                           }
-        );*/
+        );
 
 
         reSetPullToRefreshGridView();
@@ -141,12 +155,32 @@ public class HomePageFragment extends BaseBackFragment {
     }
 
 
+    /**
+     * 监听事件
+     */
+    private View.OnClickListener clicklistener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.homepage_left_bar:
+                    startActivity(new Intent(getActivity(),SearchActivity.class));
+                    break;
+                case R.id.homepage_right_bar:
+                    startActivity(new Intent(getActivity(),LoginActivity.class));
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
+
     // private CircleIndicator mCiBanner;
 
     private void reSetPullToRefreshGridView() {
         urls.clear();
         courseLists.clear();
-        mPullToRefreshListView.setMode(Mode.BOTH);
+//        mPullToRefreshListView.setMode(Mode.BOTH);
 
     }
 
@@ -203,9 +237,7 @@ public class HomePageFragment extends BaseBackFragment {
                                     gotoUrls.add(gotoUrl);
                                 }
                                 mFlashView.setImageUris(urls);
-                                //								mFlashView.setImagePaths(gotoUrls);
                             }
-
                         }
                     } else {
                         ShowErrorDialogUtil.showErrorDialog(getActivity(),(String) command.message);; // 請求失敗
@@ -220,27 +252,6 @@ public class HomePageFragment extends BaseBackFragment {
 
                             adapter = new HomePageAdapter(getActivity(), courseLists);
                             mPullToRefreshListView.setAdapter(adapter);
-
-
-//                            adapter.notifyDataSetChanged();
-
-                            /*if(courseLists!=null){
-                                for (int i = 0; i < courseLists.size(); i++) {
-                                    //轮播图文字
-                                    String titleString = courseLists.get(i).getName();
-                                    //轮播图地址
-                                    String url = "http://static.langdunzx.com/" + courseLists.get(i).getLogo();
-                                    bottomUrls.add(url);
-                                    //将获取的文字加入集合
-                                    bottomTitles.add(titleString);
-                                }
-                                //								mFlashViewBottom.setImageUris(bottomUrls);
-                                mFlashViewBottom.setBottomanImageUris(bottomUrls, bottomTitles);
-                                System.out.println("bottomTitles"+bottomTitles);
-                                //								mFlashViewBottom.setTitleString(bottomTitles);
-                                //								flName.setText(bottomName);
-                            }*/
-
                         }
                     } else {
                         ShowErrorDialogUtil.showErrorDialog(getActivity(),(String) command.message);; // 請求失敗

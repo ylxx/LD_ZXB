@@ -46,15 +46,7 @@ public class InformationFragment extends BaseBackFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        //fragment_info是模拟数据，info_pull是下拉数据
         view = inflater.inflate(R.layout.fragment_information,null);
-        ivSearch = (ImageView) getActivity().findViewById(R.id.main_left_bar);
-        ivToLogin = (ImageView) getActivity().findViewById(R.id.main_right_bar);
-        tv_text = (TextView) getActivity().findViewById(R.id.main_title_bar);
-        ivToLogin.setVisibility(View.INVISIBLE);
-        ivSearch.setVisibility(View.INVISIBLE);
-        tv_text.setText("资讯");
-
         initViews();
         initDatas();
         mIndictor.setVisiableTabCount(3);

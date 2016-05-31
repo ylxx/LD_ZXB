@@ -50,7 +50,7 @@
         android:layout_marginLeft="@dimen/default_5dp"
         android:layout_marginRight="@dimen/default_5dp"
         android:layout_marginBottom="@dimen/default_5dp"
-        android:background="@drawable/shape_circle_white"/>
+        android:background="@color/bkcolor"/>
 
 
 

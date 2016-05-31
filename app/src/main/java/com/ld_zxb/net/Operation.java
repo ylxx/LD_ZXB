@@ -8,6 +8,7 @@ import com.ld_zxb.date.JsonVoParser;
 import com.ld_zxb.vo.BaseVo;
 import com.ld_zxb.vo.HomePageBodyVo;
 import com.ld_zxb.vo.HomePageBottomEntityVo;
+import com.ld_zxb.vo.MyPurchaseCourseEntityVo;
 import com.ld_zxb.vo.UserLoginBodyVo;
 
 
@@ -505,7 +506,7 @@ public class Operation {
 	 * 
 	 * @param cmd
 	 * @return
-	 *//*
+	 */
 	@SuppressWarnings("unchecked")
 	public Message executeGetPurchaseCourse(Command cmd) {
 		HashMap<String, String> hashMap = (HashMap<String, String>) cmd.param;
@@ -537,7 +538,7 @@ public class Operation {
 		return msg;
 
 	}
-	*//**
+	/**
 	 * 获取收藏课程
 	 * 
 	 * @param cmd

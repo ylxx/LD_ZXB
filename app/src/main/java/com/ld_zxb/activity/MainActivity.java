@@ -32,7 +32,7 @@ public class MainActivity extends BaseFragmentActivity {
 
     private List<Fragment> mFragments;
 
-    private ImageView ivSearch,ivToLogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +45,7 @@ public class MainActivity extends BaseFragmentActivity {
         toolbar.setTitle("课程");*/
 
         //这里这样使用Fragment仅用于测试，请勿模仿！
-        initView();
+//        initView();
         initFragment();
         BottomTabTest();
     }
@@ -79,31 +79,11 @@ public class MainActivity extends BaseFragmentActivity {
     private  void initView()
     {
 
-        ivSearch = (ImageView) findViewById(R.id.main_left_bar);
-        ivToLogin = (ImageView) findViewById(R.id.main_right_bar);
 
-        ClickUtil.setClickListener(clicklistener,ivSearch,ivToLogin);
 
     }
 
-    /**
-     * 监听事件
-     */
-    private View.OnClickListener clicklistener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.main_left_bar:
-                    startActivity(new Intent(MainActivity.this,SearchActivity.class));
-                    break;
-                case R.id.main_right_bar:
-                    startActivity(new Intent(MainActivity.this,LoginActivity.class));
-                    break;
-                default:
-                    break;
-            }
-        }
-    };
+
 
         private void initFragment()
     {

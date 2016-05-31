@@ -7,6 +7,38 @@
     android:background="@color/bkcolor"
     tools:context=".fragment.homepage.HomePageFragment">
 
+    <RelativeLayout
+        android:id="@+id/homepage_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        >
+
+        <ImageView
+            android:id="@+id/homepage_left_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:padding="@dimen/margin_10"
+            android:src="@drawable/_0000_6"/>
+        <TextView
+            android:id="@+id/homepage_title_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="@dimen/text_size_18"
+            android:textColor="@color/white"
+            android:text="@string/title_course"/>
+        <ImageView
+            android:id="@+id/homepage_right_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/margin_10"
+            android:src="@drawable/_0000_6"/>
+
+    </RelativeLayout>
+
     <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/gridview"
         android:layout_width="match_parent"

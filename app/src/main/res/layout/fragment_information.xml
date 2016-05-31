@@ -5,10 +5,39 @@
     android:layout_height="wrap_content"
     tools:context=".fragment.homepage.InformationFragment">
 
+    <RelativeLayout
+        android:id="@+id/informationpage_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        >
+
+
+        <TextView
+            android:id="@+id/informationpage_title_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="@dimen/text_size_18"
+            android:padding="@dimen/margin_10"
+            android:textColor="@color/white"
+            android:text="@string/title_information"/>
+        <ImageView
+            android:id="@+id/informationpage_right_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/margin_10"
+            android:src="@drawable/_0000_6"/>
+
+    </RelativeLayout>
+
+
     <com.ld_zxb.view.ViewPagerIndictor
         android:id="@+id/id_indictor"
         android:layout_width="match_parent"
         android:layout_height="35dp"
+        android:layout_below="@+id/informationpage_title"
         android:orientation="horizontal">
     </com.ld_zxb.view.ViewPagerIndictor>
 

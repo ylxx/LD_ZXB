@@ -6,37 +6,7 @@
     android:layout_height="match_parent"
    >
 
-    <RelativeLayout
-        android:id="@+id/main_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        >
 
-        <ImageView
-            android:id="@+id/main_left_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:padding="@dimen/margin_10"
-            android:src="@drawable/_0000_6"/>
-        <TextView
-            android:id="@+id/main_title_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:textSize="@dimen/text_size_18"
-            android:textColor="@color/white"
-            android:text="@string/title_course"/>
-        <ImageView
-            android:id="@+id/main_right_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:padding="@dimen/margin_10"
-            android:src="@drawable/_0000_6"/>
-
-    </RelativeLayout>
 
     <!--<android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -55,7 +25,7 @@
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_above="@+id/tab"
-        android:layout_below="@+id/main_title"
+        android:layout_alignParentTop="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
     <me.majiajie.pagerbottomtabstrip.PagerBottomTabLayout
