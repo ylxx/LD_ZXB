@@ -1,6 +1,6 @@
 package com.ld_zxb.net;
 
-import java.util.HashMap;
+import android.os.Message;
 
 import com.ld_zxb.R;
 import com.ld_zxb.config.Command;
@@ -11,21 +11,8 @@ import com.ld_zxb.vo.HomePageBottomEntityVo;
 import com.ld_zxb.vo.MyPurchaseCourseEntityVo;
 import com.ld_zxb.vo.UserLoginBodyVo;
 
+import java.util.HashMap;
 
-import android.os.Message;
-/**
- * <pre>
- * 业务名:
- * 功能说明: 
- * 编写日期:	2015年5月11日
- * 作者:	zgz
- * 
- * 历史记录
- * 1、修改日期：
- *    修改人：
- *    修改内容：
- * </pre>
- */  
 public class Operation {
 	private static final String SUCCESS = "1";
 	@SuppressWarnings("unchecked")
@@ -240,7 +227,7 @@ public class Operation {
 		return msg;
 
 	}
-	*//**
+	//**
 	 *
 	 * 首页考证分类信息
 	 * @param cmd
@@ -315,12 +302,12 @@ public class Operation {
 
 	}
 
-	*//**
+	/**
 	 * 获取手机验证码
 	 * 
 	 * @param cmd
 	 * @return
-	 *//*
+	 */
 	@SuppressWarnings("unchecked")
 	public Message executeGetPhoneVerifycode(Command cmd) {
 		HashMap<String, String> hashMap = (HashMap<String, String>) cmd.param;
@@ -352,12 +339,12 @@ public class Operation {
 		return msg;
 
 	}
-	*//**
+	/*
 	 * 用户注册
 	 * 
 	 * @param cmd
 	 * @return
-	 *//*
+	 */
 	@SuppressWarnings("unchecked")
 	public Message executeRegist(Command cmd) {
 		HashMap<String, String> hashMap = (HashMap<String, String>) cmd.param;
@@ -390,7 +377,7 @@ public class Operation {
 		
 	}
 
-	*//**
+	/*//**
 	 * 忘记密码
 	 * 
 	 * @param cmd
@@ -760,7 +747,7 @@ public class Operation {
 	}*/
 	//	/**
 	//	 * 注册
-	//	 * 
+	//	 *
 	//	 * @param cmd
 	//	 * @return
 	//	 */
@@ -770,7 +757,7 @@ public class Operation {
 	//		String jsonString = CallServer.getInstance().callServer(cmd.method,
 	//				hashMap, cmd.context);
 	//		Message msg = Message.obtain();
-	//		msg.what = cmd.commandID;	
+	//		msg.what = cmd.commandID;
 	//		BaseVo baseVo = JsonVoParser.getInstance().getBasevo(jsonString);
 	//		if ((null != jsonString) && !"".equals(jsonString) && baseVo != null) {
 	//			if (SUCCESS.equals(baseVo.getSuccess())) {
@@ -992,46 +979,46 @@ public class Operation {
 	//		return msg;
 	//	}
 
-	//	/**
-	//	 *
-	//	 * 判断是否实名认证
-	//	 * @param cmd
-	//	 * @return
-	//	 */
-	//	@SuppressWarnings("unchecked")
-	//	public Message executeUserInfo(Command cmd) {
-	//		HashMap<String, String> hashMap = (HashMap<String, String>) cmd.param;
-	//		String jsonString = CallServer.getInstance().callServer(cmd.method,
-	//				hashMap, cmd.context);
-	//		Message msg = Message.obtain();
-	//		msg.what = cmd.commandID;
-	//		CertificateInfoBodyVo vo=JsonVoParser.getInstance().getCertificateInfoBodyVo(jsonString);
-	//		BaseVo baseVo = JsonVoParser.getInstance().getBasevo(jsonString);
-	//		if ((null != jsonString) && !"".equals(jsonString) && vo != null) {
-	//			if (SUCCESS.equals(vo.getSuccess())) {
-	//				cmd.isSuccess = true;
-	//				cmd.resData = vo;
-	//			} else {
-	//				cmd.stateCode = baseVo.getCode();
-	//				cmd.resData = vo.getInfo();
-	//				cmd.isSuccess = false;
-	//			}
-	//		} else {
-	//			if (baseVo != null) {
-	//				cmd.stateCode = baseVo.getCode();
-	//				cmd.resData = baseVo.getInfo();
-	//				cmd.isSuccess = false;
-	//			} else {
-	//				cmd.isSuccess = false;
-	//				cmd.stateCode = "100001";
-	//				cmd.resData = cmd.context
-	//						.getString(R.string.the_network_is_dead);
-	//			}
-	//		}
-	//		msg.obj = cmd;
-	//		return msg;
-	//
-	//	}
+		/**
+		 *
+		 * 判断是否实名认证
+		 * @param cmd
+		 * @return
+		 */
+		@SuppressWarnings("unchecked")
+		public Message executeUserInfo(Command cmd) {
+			HashMap<String, String> hashMap = (HashMap<String, String>) cmd.param;
+			String jsonString = CallServer.getInstance().callServer(cmd.method,
+					hashMap, cmd.context);
+			Message msg = Message.obtain();
+			msg.what = cmd.commandID;
+//			CertificateInfoBodyVo vo=JsonVoParser.getInstance().getCertificateInfoBodyVo(jsonString);
+//			BaseVo baseVo = JsonVoParser.getInstance().getBasevo(jsonString);
+//			if ((null != jsonString) && !"".equals(jsonString) && vo != null) {
+//				if (SUCCESS.equals(baseVo.getSuccess())) {
+//					cmd.success = true;
+//					cmd.resData = baseVo;
+//					cmd.message = baseVo.getMessage();
+//				} else {
+//					cmd.success = false;
+//					cmd.message = baseVo.getMessage();
+//				}
+//			} else {
+//				if (baseVo != null) {
+//					cmd.message = baseVo.getMessage();
+//					cmd.success = false;
+//				} else {
+//					cmd.success = false;
+//					cmd.stateCode = "100001";
+//					cmd.resData = cmd.context
+//							.getString(R.string.the_network_is_dead);
+//					cmd.message = baseVo.getMessage();
+//				}
+//			}
+			msg.obj = cmd;
+			return msg;
+
+		}
 	//	/**
 	//	 *
 	//	 * 进行实名认证
@@ -1072,4 +1059,66 @@ public class Operation {
 	//		return msg;
 	//
 	//	}
+	public Message executeAccountInfo(Command cmd){
+		HashMap<String, String> hashMap = (HashMap<String, String>) cmd.param;
+		String jsonString = CallServer.getInstance().callServer(cmd.method,
+								hashMap, cmd.context);
+		Message msg = Message.obtain();
+		msg.what = cmd.commandID;
+		BaseVo baseVo = JsonVoParser.getInstance().getBasevo(jsonString);
+		if ((null != jsonString) && !"".equals(jsonString) && baseVo != null) {
+			if (SUCCESS.equals(baseVo.getSuccess())) {
+						cmd.success = true;
+						cmd.resData = baseVo;
+						cmd.message = baseVo.getMessage();
+			} else {
+						cmd.success = false;
+						cmd.message = baseVo.getMessage();
+			}
+		} else {
+			if (baseVo != null) {
+						cmd.success = false;
+						cmd.message = baseVo.getMessage();
+			} else {
+						cmd.success= false;
+						cmd.stateCode = "100001";
+						cmd.resData = cmd.context
+								.getString(R.string.the_network_is_dead);
+						cmd.message = baseVo.getMessage();
+			}
+		}
+		msg.obj = cmd;
+		return msg;
+	}
+	/*个人头像修改*/
+	@SuppressWarnings("unchecked")
+	public Message executeUserPhoto(Command cmd) {
+		HashMap<String, String> hashMap = (HashMap<String, String>) cmd.param;
+		String jsonString = CallServer.getInstance().callServer(cmd.method,
+				hashMap, cmd.context);
+		Message msg = Message.obtain();
+		msg.what = cmd.commandID;
+		BaseVo baseVo = JsonVoParser.getInstance().getBasevo(jsonString);
+//		if ((null != jsonString) && !"".equals(jsonString) && baseVo != null) {
+//			if (baseVo.getSuccess()) {
+//				cmd.success = true;
+//				cmd.resData = homePageBottomEntityVo;
+//			} else {
+//				cmd.message = baseVo.getMessage();
+//				cmd.success = false;
+//			}
+//		} else {
+//			if (baseVo != null) {
+//				cmd.message = baseVo.getMessage();
+//				cmd.success = false;
+//			} else {
+//				cmd.success = false;
+//				cmd.message = cmd.context
+//						.getString(R.string.the_network_is_dead);
+//			}
+//		}
+		msg.obj = cmd;
+		return msg;
+
+	}
 }

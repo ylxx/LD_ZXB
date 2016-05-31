@@ -4,15 +4,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     <LinearLayout
-		android:id="@+id/lovekecheng"
+		android:id="@+id/mine_baodu_class"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:orientation="vertical">
 
 	<com.ld_zxb.view.DrawableCenterTextView
+	    android:id="@+id/find"
 	    android:layout_width="150dp"
 	    android:layout_height="50dp"
-	    android:text="收藏的课程"
+	    android:text="报读的课程"
 	    android:gravity="center"
 	    android:background="#000000"
 	    android:textColor="#FFFFFF"/>
@@ -24,14 +25,15 @@
 	    android:background="#FFFFFF"
 	    />
 	<LinearLayout
-		android:id="@+id/meStrings"
+		android:id="@+id/mine_love_class"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:orientation="vertical">
 	<com.ld_zxb.view.DrawableCenterTextView
+	    android:id="@+id/click"
 	    android:layout_width="150dp"
 	    android:layout_height="50dp"
-	    android:text="个人资料"
+	    android:text="收藏的课程"
 	    android:gravity="center"
 	    android:background="#000000"
 	    android:textColor="#FFFFFF"/>

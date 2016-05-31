@@ -10,9 +10,10 @@
 		android:orientation="vertical">
 
 	<com.ld_zxb.view.DrawableCenterTextView
+	    android:id="@+id/find"
 	    android:layout_width="150dp"
 	    android:layout_height="50dp"
-	    android:text="收藏的课程"
+	    android:text="报读的课程"
 	    android:gravity="center"
 	    android:background="#000000"
 	    android:textColor="#FFFFFF"/>
@@ -29,6 +30,7 @@
 		android:layout_height="wrap_content"
 		android:orientation="vertical">
 	<com.ld_zxb.view.DrawableCenterTextView
+	    android:id="@+id/click"
 	    android:layout_width="150dp"
 	    android:layout_height="50dp"
 	    android:text="个人资料"

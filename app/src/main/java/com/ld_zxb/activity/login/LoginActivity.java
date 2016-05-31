@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,7 +12,6 @@ import com.ld_zxb.R;
 import com.ld_zxb.activity.BaseFragmentActivity;
 import com.ld_zxb.activity.MainActivity;
 import com.ld_zxb.activity.RegistActivity;
-import com.ld_zxb.activity.scrollview.PullToZoomScrollActivity;
 import com.ld_zxb.application.DCApplication;
 import com.ld_zxb.config.Constants;
 import com.ld_zxb.controller.BaseHandler;
@@ -22,6 +20,7 @@ import com.ld_zxb.utils.CheckUtil;
 import com.ld_zxb.utils.ClickUtil;
 import com.ld_zxb.utils.SPUtils;
 import com.ld_zxb.utils.SerialUtils;
+import com.ld_zxb.utils.UserID;
 import com.ld_zxb.vo.UserLoginBodyVo;
 
 import java.io.IOException;
@@ -38,11 +37,13 @@ public class LoginActivity extends BaseFragmentActivity {
      */
     private String userName,password;
     private Intent intent;
+    UserID userID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentViewWithActionBar(R.layout.activity_login,"课程","登录");
-
+        userID = UserID.getInstance();
+        userID.setUserName("");
         initview();
     }
 
@@ -124,7 +125,6 @@ public class LoginActivity extends BaseFragmentActivity {
                     /**
                      * 将用户登录信息存入application中
                      */
-
                     SPUtils.put(getApplication(), "login", true);
                     application.setUserloginbodyvo(person);
                     //					boolean loginStr = true;//判断是否在登录状态的参数，用做自动登录的判断条件

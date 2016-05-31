@@ -6,7 +6,11 @@
     <string name="title_course">课程</string>
     <string name="title_information">资讯</string>
     <string name="title_mine">我的</string>
-
+    <string name="findpwd_phone">请输入手机号</string>
+    <string name="input_right_phone">请输入正确的手机号码</string>
+    <string name="input_auth_code">请输入验证码</string>
+    <string name="input_login_psw">请输入密码</string>
+    <string name="two_password_different">两次密码不一样</string>
     <string name="leave">离开</string>
     <string name="no_leave">再等会</string>
 

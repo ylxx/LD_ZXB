@@ -7,35 +7,37 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
+
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/all_title" >
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        >
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="20dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="15dp"
-            android:src="@drawable/jiantou" />
-        <TextView
-            android:id="@+id/tvTitle"
+            android:id="@+id/mine_Left_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_marginBottom="3dp"
-            android:text="个人信息"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp" />
+            android:layout_alignParentLeft="true"
+            android:padding="11dp"
+            android:layout_marginRight="@dimen/default_10dp"
+            android:src="@drawable/jiantou"/>
 
+        <TextView
+            android:id="@+id/mainpage_title_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="@dimen/text_size_18"
+            android:padding="@dimen/margin_10"
+            android:textColor="@color/white"
+            android:text="个人信息"/>
         <ImageView
-            android:id="@+id/iv_Show"
-            android:layout_width="60dp"
-            android:layout_height="25dp"
+            android:id="@+id/mine_right_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="15dp"
-            android:src="@drawable/icon_share" />
+            android:padding="11dp"
+            android:layout_marginRight="@dimen/default_10dp"
+            android:background="@null"/>
     </RelativeLayout>
     <com.ecloud.pulltozoomview.PullToZoomScrollViewEx
         android:id="@+id/scroll_view"

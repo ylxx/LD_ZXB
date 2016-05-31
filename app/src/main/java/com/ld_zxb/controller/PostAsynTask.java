@@ -5,16 +5,6 @@
  *******************************************************************************/
 package com.ld_zxb.controller;
 
-import java.util.HashMap;
-
-import com.ld_zxb.R;
-import com.ld_zxb.application.DCApplication;
-import com.ld_zxb.config.Command;
-import com.ld_zxb.config.Constants;
-import com.ld_zxb.net.Operation;
-import com.ld_zxb.utils.CommonUtils;
-
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -25,6 +15,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.ld_zxb.R;
+import com.ld_zxb.config.Command;
+import com.ld_zxb.config.Constants;
+import com.ld_zxb.net.Operation;
+import com.ld_zxb.utils.CommonUtils;
+
+import java.util.HashMap;
 
 public class PostAsynTask extends AsyncTask<Command, Integer, Message> {
 	private Dialog dialog;
@@ -162,6 +160,10 @@ public class PostAsynTask extends AsyncTask<Command, Integer, Message> {
 		if(Constants.HOME_DATA==command.commandID){
 			return operation.executeHomeData(command);
 		}
+		//个人头像的更换
+		if(Constants.USER_PHOTO==command.commandID){
+			return operation.executeUserPhoto(command);
+		}
 		//助学宝页数据加载
 //		if(Constants.ZXB_DATA==command.commandID){
 //			return operation.executeZXBData(command);
@@ -183,10 +185,10 @@ public class PostAsynTask extends AsyncTask<Command, Integer, Message> {
 //			return operation.executeForgetPwd(command);
 //		}
 //		// 获取手机短信验证码
-//		if (Constants.GET_PHONE_VERRIFYCODE == command.commandID) {
-//			return operation.executeGetPhoneVerifycode(command);
-//		}
-//		// 注册
+		if (Constants.GET_PHONE_VERRIFYCODE == command.commandID) {
+			return operation.executeGetPhoneVerifycode(command);
+		}
+////		// 注册
 //		if (Constants.REGISTER == command.commandID) {
 //			return operation.executeRegist(command);
 //		}
@@ -275,9 +277,9 @@ public class PostAsynTask extends AsyncTask<Command, Integer, Message> {
 		//			return operation.executeLogOut(command);
 		//		}
 		// 账户信息
-		//		if (Constants.ACCOUNT_INFO == command.commandID) {
-		//			return operation.executeAccountInfo(command);
-		//		}
+				if (Constants.ACCOUNT_INFO == command.commandID) {
+					return operation.executeAccountInfo(command);
+				}
 		//		// 交易记录查询
 		//		if (Constants.TRADE_RECORD == command.commandID) {
 		//			return operation.executeTradeRecord(command);
@@ -295,10 +297,10 @@ public class PostAsynTask extends AsyncTask<Command, Integer, Message> {
 		//			return operation.executeEdingtou(command);
 		//		}
 
-		//用户信息
-		//		if(Constants.USER_INFO==command.commandID){
-		//			return operation.executeUserInfo(command);
-		//		}
+//		用户信息
+		if(Constants.USER_INFO==command.commandID){
+			return operation.executeUserInfo(command);
+		}
 		//		//实名认证
 		//		if(Constants.CERTIFICATION_INFO==command.commandID){
 		//			return operation.executeCertificate(command);

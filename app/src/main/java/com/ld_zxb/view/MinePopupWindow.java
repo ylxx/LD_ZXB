@@ -13,9 +13,9 @@ import android.widget.PopupWindow;
 
 import com.ld_zxb.R;
 import com.ld_zxb.activity.LikeClassActivity;
-import com.ld_zxb.activity.scrollview.PullToZoomScrollActivity;
+import com.ld_zxb.fragment.homepage.MineFragment;
 
-public class CustomPopupWindow extends PopupWindow implements View.OnClickListener{
+public class MinePopupWindow extends PopupWindow implements View.OnClickListener{
 	private Activity activity;
 	private View contentView;
 
@@ -24,7 +24,7 @@ public class CustomPopupWindow extends PopupWindow implements View.OnClickListen
 	// 用于保存PopupWindows的高度
 	private int height;
 
-	public CustomPopupWindow(Activity activity) {
+	public MinePopupWindow(Activity activity) {
 		super();
 		this.activity = activity;
 		this.initPopupWindow();
@@ -34,9 +34,9 @@ public class CustomPopupWindow extends PopupWindow implements View.OnClickListen
 		// TODO Auto-generated method stub
 		LayoutInflater inflater = (LayoutInflater) activity
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View view = inflater.inflate(R.layout.popupwindow_custom, null);
-		LinearLayout lovekecheng = (LinearLayout) view.findViewById(R.id.lovekecheng);
-		LinearLayout meStrings = (LinearLayout) view.findViewById(R.id.meStrings);
+		View view = inflater.inflate(R.layout.popupwindow_mine, null);
+		LinearLayout lovekecheng = (LinearLayout) view.findViewById(R.id.mine_baodu_class);
+		LinearLayout meStrings = (LinearLayout) view.findViewById(R.id.mine_love_class);
 		lovekecheng.setOnClickListener(this);
 		meStrings.setOnClickListener(this);
 		this.contentView =view;
@@ -55,17 +55,16 @@ public class CustomPopupWindow extends PopupWindow implements View.OnClickListen
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-			case R.id.lovekecheng:
+			case R.id.mine_baodu_class:
 				//喜欢的课程
+				activity.startActivity(new Intent(activity,MineFragment.class));
+				this.dismiss();
+				break;
+			case R.id.mine_love_class:
+				//个人资料
 				activity.startActivity(new Intent(activity,LikeClassActivity.class));
 				this.dismiss();
 				break;
-			case R.id.meStrings:
-				//个人资料
-				activity.startActivity(new Intent(activity,PullToZoomScrollActivity.class));
-				this.dismiss();
-				break;
-
 			default:
 				break;
 		}
@@ -126,7 +125,7 @@ public class CustomPopupWindow extends PopupWindow implements View.OnClickListen
     
     public static class PopupWindowBuilder{
     	private static String activityHashCode;
-    	private static CustomPopupWindow popupWindow;
+    	private static MinePopupWindow popupWindow;
     	public static PopupWindowBuilder ourInstance;
     	
     	 public static PopupWindowBuilder getInstance(Activity activity) {
@@ -137,7 +136,7 @@ public class CustomPopupWindow extends PopupWindow implements View.OnClickListen
 			  */
              if (!hashCode.equals(String.valueOf(activityHashCode))) {
                  activityHashCode = hashCode;
-                 popupWindow = new CustomPopupWindow(activity);
+                 popupWindow = new MinePopupWindow(activity);
              }
              return ourInstance;
          }
@@ -157,7 +156,7 @@ public class CustomPopupWindow extends PopupWindow implements View.OnClickListen
              return this;
          }
 
-         public CustomPopupWindow getPopupWindow() {
+         public MinePopupWindow getPopupWindow() {
              popupWindow.update();
              return popupWindow;
          }

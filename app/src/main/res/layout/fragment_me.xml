@@ -28,8 +28,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:padding="@dimen/margin_10"
-            android:src="@drawable/_0000_6"/>
+            android:padding="11dp"
+            android:layout_marginRight="@dimen/default_10dp"
+            android:src="@drawable/icon_share"/>
 
     </RelativeLayout>
 

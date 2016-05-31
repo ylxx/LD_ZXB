@@ -23,6 +23,7 @@ import com.ld_zxb.controller.RequestCommant;
 import com.ld_zxb.fragment.BaseBackFragment;
 import com.ld_zxb.utils.ClickUtil;
 import com.ld_zxb.utils.ShowErrorDialogUtil;
+import com.ld_zxb.view.CustomPopupWindow;
 import com.ld_zxb.vo.MyPurchaseCourseEntityVo;
 
 import java.util.ArrayList;
@@ -52,8 +53,6 @@ public class MineFragment extends BaseBackFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_me, null);
         initView();
-
-
         ClickUtil.setClickListener(listener, ivGetMenu);
         return view;
     }
@@ -107,13 +106,14 @@ public class MineFragment extends BaseBackFragment {
 
     /**
      * 监听事件
-     */
+    */
     private View.OnClickListener listener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.mainpage_right_bar:
-
+                    CustomPopupWindow customPopupWindow = new CustomPopupWindow(getActivity());
+                    customPopupWindow.showAtDropDownRight(ivGetMenu);
                     break;
                 default:
                     break;

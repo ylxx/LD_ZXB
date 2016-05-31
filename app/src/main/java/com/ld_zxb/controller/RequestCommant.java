@@ -1,12 +1,11 @@
 package com.ld_zxb.controller;
 
-import java.util.HashMap;
+import android.content.Context;
 
 import com.ld_zxb.config.Command;
 import com.ld_zxb.config.Constants;
 
-
-import android.content.Context;
+import java.util.HashMap;
 
 public class RequestCommant {
 	//测试 请求列表
@@ -340,12 +339,22 @@ public class RequestCommant {
 	public void requestUserInfo(BaseHandler handler,Context context,HashMap<String, String> paramHashMap){
 		Command command = new Command(Constants.USER_INFO, handler); 
 		command.param = paramHashMap;
-		command.method = "queryUser";  
+		command.method = "user/info?";
 		command.waitingMsg = "加载中，请稍候...";
 		command.showDialog = true;
 		command.context = context;
 		PostAsynTask mPostAsynTask = new PostAsynTask(context, command);
 		mPostAsynTask.execute();    	     	 
 	}
-
+	//用户头像
+	public void requestUserPhoto(BaseHandler handler,Context context,HashMap<String, String> paramHashMap){
+		Command command = new Command(Constants.USER_PHOTO, handler);
+		command.param = paramHashMap;
+		command.method = "user/avatar?";
+		command.waitingMsg = "加载中，请稍候...";
+		command.showDialog = true;
+		command.context = context;
+		PostAsynTask mPostAsynTask = new PostAsynTask(context, command);
+		mPostAsynTask.execute();
+	}
 }

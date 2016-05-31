@@ -36,7 +36,7 @@
             android:layout_gravity="center"/>
     </LinearLayout>
     <LinearLayout
-        android:id="@+id/imageView_close"
+        android:id="@+id/View_close"
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:background="@color/white"
@@ -44,9 +44,10 @@
         android:layout_marginTop="@dimen/default_10dp"
         android:orientation="horizontal" >
 
-        <ImageView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/share_close" />
+            android:text="取消"
+            android:textSize="@dimen/default_18sp"/>
     </LinearLayout>
 </LinearLayout>

@@ -98,5 +98,6 @@ public class Constants {
 	public static final int WITHDRAW=++INIT_POST_IDENTIFIER;
 	//删除收藏
 	public static final int DEL_FAVCRS=++INIT_POST_IDENTIFIER;
-
+	//个人头像
+	public static final int USER_PHOTO=++INIT_POST_IDENTIFIER;
 }

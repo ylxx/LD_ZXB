@@ -12,10 +12,10 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import com.ld_zxb.R;
-import com.ld_zxb.activity.LikeClassActivity;
 import com.ld_zxb.activity.scrollview.PullToZoomScrollActivity;
+import com.ld_zxb.fragment.homepage.MineFragment;
 
-public class CustomPopupWindow extends PopupWindow implements View.OnClickListener{
+public class LikeClassPopupWindow extends PopupWindow implements View.OnClickListener{
 	private Activity activity;
 	private View contentView;
 
@@ -24,7 +24,7 @@ public class CustomPopupWindow extends PopupWindow implements View.OnClickListen
 	// 用于保存PopupWindows的高度
 	private int height;
 
-	public CustomPopupWindow(Activity activity) {
+	public LikeClassPopupWindow(Activity activity) {
 		super();
 		this.activity = activity;
 		this.initPopupWindow();
@@ -34,7 +34,7 @@ public class CustomPopupWindow extends PopupWindow implements View.OnClickListen
 		// TODO Auto-generated method stub
 		LayoutInflater inflater = (LayoutInflater) activity
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View view = inflater.inflate(R.layout.popupwindow_custom, null);
+		View view = inflater.inflate(R.layout.popupwindow_likeclass, null);
 		LinearLayout lovekecheng = (LinearLayout) view.findViewById(R.id.lovekecheng);
 		LinearLayout meStrings = (LinearLayout) view.findViewById(R.id.meStrings);
 		lovekecheng.setOnClickListener(this);
@@ -56,8 +56,8 @@ public class CustomPopupWindow extends PopupWindow implements View.OnClickListen
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.lovekecheng:
-				//喜欢的课程
-				activity.startActivity(new Intent(activity,LikeClassActivity.class));
+				//报读的课程
+				activity.startActivity(new Intent(activity,MineFragment.class));
 				this.dismiss();
 				break;
 			case R.id.meStrings:
@@ -126,7 +126,7 @@ public class CustomPopupWindow extends PopupWindow implements View.OnClickListen
     
     public static class PopupWindowBuilder{
     	private static String activityHashCode;
-    	private static CustomPopupWindow popupWindow;
+    	private static LikeClassPopupWindow popupWindow;
     	public static PopupWindowBuilder ourInstance;
     	
     	 public static PopupWindowBuilder getInstance(Activity activity) {
@@ -137,7 +137,7 @@ public class CustomPopupWindow extends PopupWindow implements View.OnClickListen
 			  */
              if (!hashCode.equals(String.valueOf(activityHashCode))) {
                  activityHashCode = hashCode;
-                 popupWindow = new CustomPopupWindow(activity);
+                 popupWindow = new LikeClassPopupWindow(activity);
              }
              return ourInstance;
          }
@@ -157,7 +157,7 @@ public class CustomPopupWindow extends PopupWindow implements View.OnClickListen
              return this;
          }
 
-         public CustomPopupWindow getPopupWindow() {
+         public LikeClassPopupWindow getPopupWindow() {
              popupWindow.update();
              return popupWindow;
          }
