@@ -33,7 +33,7 @@ public class InformationFragment extends BaseBackFragment {
     private ViewPager mViewPager;
     private ViewPagerIndictor mIndictor;
     private List<String> mTitles = Arrays.asList("政策解读", "行业新闻", "IFM考试资讯");
-    private List<VpSimpleFragment> mContents = new ArrayList<VpSimpleFragment>();
+//    private List<VpSimpleFragment> mContents = new ArrayList<VpSimpleFragment>();
     private FragmentPagerAdapter mAdapter;
     private ImageView ivSearch,ivToLogin;
     TextView tv_text;
@@ -99,12 +99,12 @@ public class InformationFragment extends BaseBackFragment {
 
         return view;
     }
-    /**切换到其他视图时，销毁当前视图*/
+    /**切换到其他视图时，销毁当前视图*//*
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         mContents.removeAll(mContents);
-    }
+    }*/
     /**初始化控件*/
     private void initViews() {
         mViewPager = (ViewPager) view.findViewById(R.id.id_viewPager);

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bkcolor"
-    tools:context="com.ld_zxb.activity.course.CourseDetailsActivty">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/bkcolor">
 
 
     <RelativeLayout
@@ -51,6 +50,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
         <ImageView
+            android:id="@+id/iv_coursedetails_down"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/introduction_playvideo_down"
@@ -82,8 +82,9 @@
         <com.ld_zxb.view.ViewPagerIndictor
             android:id="@+id/id_coursedetail_indictor"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:orientation="horizontal">
+            android:layout_height="45dp"
+            android:orientation="horizontal"
+            android:background="@color/white">
         </com.ld_zxb.view.ViewPagerIndictor>
 
         <android.support.v4.view.ViewPager
