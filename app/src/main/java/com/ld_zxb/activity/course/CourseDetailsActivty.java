@@ -1,6 +1,7 @@
 package com.ld_zxb.activity.course;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -23,6 +24,7 @@ import com.ld_zxb.view.ViewPagerIndictor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class CourseDetailsActivty extends FragmentActivity {
@@ -33,7 +35,7 @@ public class CourseDetailsActivty extends FragmentActivity {
     private List<String> mTitles = Arrays.asList("目录", "评论");
     private List<CommentFragment> mContents = new ArrayList<CommentFragment>();
     private FragmentPagerAdapter mAdapter;
-
+    private String courseId;
     private ImageView ivDown;
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -100,16 +102,12 @@ public class CourseDetailsActivty extends FragmentActivity {
 
         ivDown = (ImageView) findViewById(R.id.iv_coursedetails_down);
 
-        ivDown.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(CourseDetailsActivty.this,"1111", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     private void initDatas() {
 
+        Intent intent = getIntent();
+        courseId = intent.getStringExtra("courseId");
         mAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
@@ -129,6 +127,15 @@ public class CourseDetailsActivty extends FragmentActivity {
                 return mTitles.size();
             }
         };
+
+        requestCourseDetails();
+
+    }
+
+    private void requestCourseDetails() {
+
+        HashMap<String,String> map = new HashMap<String,String>();
+//        map.put()
     }
 
 }

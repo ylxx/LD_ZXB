@@ -85,25 +85,13 @@ public class HomePageAdapter extends BaseAdapter{
             holder.courseName1 = (TextView) view.findViewById(R.id.course_name1);
             holder.ivCourse1 =(ImageView) view.findViewById(R.id.course_iv1);
             holder.courseTeacher1 =(TextView) view.findViewById(R.id.course_teacher1);
-            holder.ll.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(context,String.valueOf(position*2),Toast.LENGTH_SHORT).show();
-                    context.startActivity(new Intent(context, CourseDetailsActivty.class));
 
-                }
-            });
 
             holder.ll2 = (LinearLayout) view.findViewById(R.id.ll2);
             holder.courseName2 = (TextView) view.findViewById(R.id.course_name2);
             holder.ivCourse2 =(ImageView) view.findViewById(R.id.course_iv2);
             holder.courseTeacher2 =(TextView) view.findViewById(R.id.course_teacher2);
-            holder.ll2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(context,String.valueOf(position*2+1),Toast.LENGTH_SHORT).show();
-                }
-            });
+
 
             //view 事件的观察者，根据图片宽度设置图片高度
             ViewTreeObserver vto = holder.ivCourse1.getViewTreeObserver();
@@ -142,11 +130,13 @@ public class HomePageAdapter extends BaseAdapter{
         }
         holder.position = position;
 
-        HomePageBottomEntityBodyVo.CourseList courseList1 = courseLists.get(position * 2);
-        String url = courseList1.getLogo();
-        ImageLoader.getInstance().displayImage("http://static.langdunzx.com/"+url,holder.ivCourse1,options);
-        holder.courseTeacher1.setText("主讲："+courseList1.getTeacherList().get(0));
-        holder.courseName1.setText(courseList1.getName());
+        if(position * 2 < courseLists.size()) {
+            HomePageBottomEntityBodyVo.CourseList courseList1 = courseLists.get(position * 2);
+            String url = courseList1.getLogo();
+            ImageLoader.getInstance().displayImage("http://static.langdunzx.com/" + url, holder.ivCourse1, options);
+            holder.courseTeacher1.setText("主讲：" + courseList1.getTeacherList().get(0));
+            holder.courseName1.setText(courseList1.getName());
+        }
         if (position * 2 + 1 < courseLists.size()) {
             holder.ll2.setVisibility(View.VISIBLE);
             HomePageBottomEntityBodyVo.CourseList courseList2 = courseLists.get(position * 2 + 1);
@@ -159,6 +149,28 @@ public class HomePageAdapter extends BaseAdapter{
         } else {
             holder.ll2.setVisibility(View.INVISIBLE);
         }
+
+        holder.ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Toast.makeText(context,String.valueOf(position*2),Toast.LENGTH_SHORT).show();
+                Intent intent1 = new Intent(context,CourseDetailsActivty.class);
+                String courseId1 = String.valueOf(courseLists.get(position*2).getCourseId());
+                intent1.putExtra("courseId",courseId1);
+                context.startActivity(intent1);
+            }
+        });
+
+        holder.ll2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context,String.valueOf(position*2+1),Toast.LENGTH_SHORT).show();
+                Intent intent2 = new Intent(context,CourseDetailsActivty.class);
+                String courseId2 = String.valueOf(courseLists.get(position*2+1).getCourseId());
+                intent2.putExtra("courseId",courseId2);
+                context.startActivity(intent2);
+            }
+        });
 
         return view;
     }

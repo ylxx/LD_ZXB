@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bkcolor"
+    tools:context="com.ld_zxb.activity.course.CourseClassifyActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/default_150dp"
+        android:background="@drawable/default_picture">
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_courseclassify_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_5dp"
+        android:padding="@dimen/default_10dp"
+        android:textSize="@dimen/default_18sp"
+        android:textColor="@color/black"
+        android:text="财务管理师一级"/>
+
+    <WebView
+        android:id="@+id/wv_courseclassify"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/default_80dp">
+
+    </WebView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/introduction_playvideo_down"/>
+    </RelativeLayout>
+
+    <com.ld_zxb.view.ViewPagerIndictor
+        android:id="@+id/id_courseclassify_indictor"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:background="@color/white">
+    </com.ld_zxb.view.ViewPagerIndictor>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/id_courseclassify_viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/id_indictor">
+    </android.support.v4.view.ViewPager>
+</LinearLayout>
