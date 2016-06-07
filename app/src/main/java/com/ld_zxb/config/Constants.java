@@ -100,4 +100,6 @@ public class Constants {
 	public static final int DEL_FAVCRS=++INIT_POST_IDENTIFIER;
 	//个人头像
 	public static final int USER_PHOTO=++INIT_POST_IDENTIFIER;
+	//资讯列表
+	public static final int INFORMATION=++INIT_POST_IDENTIFIER;
 }

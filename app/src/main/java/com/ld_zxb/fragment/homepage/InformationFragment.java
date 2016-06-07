@@ -21,7 +21,6 @@ import com.ld_zxb.fragment.informationpage.VpSimpleFragmentA;
 import com.ld_zxb.fragment.informationpage.VpSimpleFragmentB;
 import com.ld_zxb.view.ViewPagerIndictor;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -115,7 +114,7 @@ public class InformationFragment extends BaseBackFragment {
         mAdapter = new FragmentPagerAdapter(getChildFragmentManager()) {
             @Override
             public int getCount() {
-                return  3;
+                return  mTitles.size();
             }
 
             @Override

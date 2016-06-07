@@ -15,12 +15,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.ecloud.pulltozoomview.PullToZoomScrollViewEx;
 import com.ld_zxb.R;
 import com.ld_zxb.activity.BaseFragmentActivity;
+import com.ld_zxb.config.Constants;
 import com.ld_zxb.controller.BaseHandler;
 import com.ld_zxb.controller.RequestCommant;
+import com.ld_zxb.entity.MineEntity;
 
 import java.io.File;
 import java.util.HashMap;
@@ -47,6 +50,9 @@ public class PullToZoomScrollActivity extends BaseFragmentActivity implements Vi
     /* 头像名称 */
     private static final String PHOTO_FILE_NAME = "temp_photo.jpg";
     private File tempFile;
+    private MineEntity mineEntity;
+    private TextView pullMine_phone,pullMine_email,pullMine_nickname,head_username;
+
     private class requetHandle extends BaseHandler {
         public requetHandle(Activity activity) {
             super(activity);
@@ -55,7 +61,15 @@ public class PullToZoomScrollActivity extends BaseFragmentActivity implements Vi
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-
+            if(msg.what == Constants.USER_INFO){
+                if(command.success){
+                    mineEntity = (MineEntity) command.resData;
+                    pullMine_email.setText(mineEntity.getEntity().getEmail().toString());
+                    pullMine_nickname.setText("小样");
+                    pullMine_phone.setText(mineEntity.getEntity().getMobile().toString());
+                    head_username.setText("小样");
+                }
+            }
         }
     }
 
@@ -83,6 +97,10 @@ public class PullToZoomScrollActivity extends BaseFragmentActivity implements Vi
                         | Gravity.CENTER_HORIZONTAL, 0, 0);
             }
         });
+        pullMine_email = (TextView) scrollView.getPullRootView().findViewById(R.id.pull_mine_email);
+        pullMine_nickname = (TextView) scrollView.getPullRootView().findViewById(R.id.pull_mine_nickname);
+        pullMine_phone = (TextView) scrollView.getPullRootView().findViewById(R.id.pull_mine_phone);
+        head_username = (TextView) scrollView.getPullRootView().findViewById(R.id.head_user_name);
         DisplayMetrics localDisplayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(localDisplayMetrics);
         int mScreenHeight = localDisplayMetrics.heightPixels;
@@ -106,13 +124,13 @@ public class PullToZoomScrollActivity extends BaseFragmentActivity implements Vi
     }
     public void getUserinfo() {
         HashMap<String, String> hashmap = new HashMap<String, String>();
-        hashmap.put("userId", "1");//用户id
+        hashmap.put("userId", "27604");//用户id
         new RequestCommant().requestUserInfo(new requetHandle(this),this,hashmap);
     }
     public void chagePhoto(){
         HashMap<String, String> hashmap = new HashMap<String, String>();
         hashmap.put("avatar", "1");//用户头像地址
-        hashmap.put("userId", "1");//用户id
+        hashmap.put("userId", "27604");//用户id
         new RequestCommant().requestUserPhoto(new requetHandle(this),this,hashmap);
     }
 

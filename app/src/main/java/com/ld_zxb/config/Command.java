@@ -80,5 +80,6 @@ public class Command {
 		this.commandID = commandID;
 		this.handler = handler;
 	}
-	
+
+
 }

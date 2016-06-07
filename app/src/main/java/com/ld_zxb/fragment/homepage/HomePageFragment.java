@@ -11,18 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.handmark.pulltorefresh.library.ILoadingLayout;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
-import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.ld_zxb.R;
-import com.ld_zxb.activity.MainActivity;
-import com.ld_zxb.activity.course.CourseClassifyActivity;
 import com.ld_zxb.activity.login.LoginActivity;
 import com.ld_zxb.activity.secondary.SearchActivity;
 import com.ld_zxb.activity.secondary.WebEmbedActivity;
@@ -47,14 +42,9 @@ import java.util.List;
 
 public class HomePageFragment extends BaseBackFragment {
 
-    private static String TYPE_ONE = "1";
-    private static String TYPE_TWO = "2";
-    private static String TYPE_THREE = "3";
-
     private Context mContext;
     private DCApplication mApplication;
     private View view;
-    private RelativeLayout rlOne,rlTwo,rlThree;
     static final int MENU_SET_MODE = 0;
     private PullToRefreshListView mPullToRefreshListView;
     private FlashView mFlashView;
@@ -94,11 +84,7 @@ public class HomePageFragment extends BaseBackFragment {
         mPullToRefreshListView.getRefreshableView().addHeaderView(View.inflate(getActivity(),R.layout.header_homepagefragmen,null));
         mPullToRefreshListView.setMode(Mode.BOTH);
 
-        rlOne = (RelativeLayout)view.findViewById(R.id.rl_homepage_1);
-        rlTwo = (RelativeLayout)view.findViewById(R.id.rl_homepage_2);
-        rlThree = (RelativeLayout)view.findViewById(R.id.rl_homepage_3);
-
-        ClickUtil.setClickListener(clicklistener,ivSearch,ivToLogin,rlOne,rlTwo,rlThree);
+        ClickUtil.setClickListener(clicklistener,ivSearch,ivToLogin);
 
         ILoadingLayout loadingLayoutProxy = mPullToRefreshListView
                 .getLoadingLayoutProxy(true, false);
@@ -178,21 +164,6 @@ public class HomePageFragment extends BaseBackFragment {
                     break;
                 case R.id.homepage_right_bar:
                     startActivity(new Intent(getActivity(),LoginActivity.class));
-                    break;
-                case R.id.rl_homepage_1:
-                    Intent intentOne = new Intent(getActivity(), CourseClassifyActivity.class);
-                    intentOne.putExtra("type",TYPE_ONE);
-                    startActivity(intentOne);
-                    break;
-                case R.id.rl_homepage_2:
-                    Intent intentTwo = new Intent(getActivity(), CourseClassifyActivity.class);
-                    intentTwo.putExtra("type",TYPE_TWO);
-                    startActivity(intentTwo);
-                    break;
-                case R.id.rl_homepage_3:
-                    Intent intentThree = new Intent(getActivity(), CourseClassifyActivity.class);
-                    intentThree.putExtra("type",TYPE_THREE);
-                    startActivity(intentThree);
                     break;
                 default:
                     break;

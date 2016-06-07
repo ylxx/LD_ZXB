@@ -5,6 +5,8 @@ import android.os.Message;
 import com.ld_zxb.R;
 import com.ld_zxb.config.Command;
 import com.ld_zxb.date.JsonVoParser;
+import com.ld_zxb.entity.InformationEntity;
+import com.ld_zxb.entity.MineEntity;
 import com.ld_zxb.vo.BaseVo;
 import com.ld_zxb.vo.HomePageBodyVo;
 import com.ld_zxb.vo.HomePageBottomEntityVo;
@@ -986,7 +988,7 @@ public class Operation {
 		 * @return
 		 */
 		@SuppressWarnings("unchecked")
-		public Message executeUserInfo(Command cmd) {
+		public Message executeAccountInfo(Command cmd) {
 			HashMap<String, String> hashMap = (HashMap<String, String>) cmd.param;
 			String jsonString = CallServer.getInstance().callServer(cmd.method,
 					hashMap, cmd.context);
@@ -1059,32 +1061,33 @@ public class Operation {
 	//		return msg;
 	//
 	//	}
-	public Message executeAccountInfo(Command cmd){
+	/**获取账户信息*/
+	public Message executeUserInfo(Command cmd){
 		HashMap<String, String> hashMap = (HashMap<String, String>) cmd.param;
 		String jsonString = CallServer.getInstance().callServer(cmd.method,
 								hashMap, cmd.context);
 		Message msg = Message.obtain();
 		msg.what = cmd.commandID;
-		BaseVo baseVo = JsonVoParser.getInstance().getBasevo(jsonString);
-		if ((null != jsonString) && !"".equals(jsonString) && baseVo != null) {
-			if (SUCCESS.equals(baseVo.getSuccess())) {
+		MineEntity mineEntity = JsonVoParser.getInstance().getMineEntity(jsonString);
+		if ((null != jsonString) && !"".equals(jsonString) && mineEntity != null) {
+			if (mineEntity.isSuccess()) {
 						cmd.success = true;
-						cmd.resData = baseVo;
-						cmd.message = baseVo.getMessage();
+						cmd.resData = mineEntity;
+						cmd.message = mineEntity.getMessage();
 			} else {
 						cmd.success = false;
-						cmd.message = baseVo.getMessage();
+						cmd.message = mineEntity.getMessage();
 			}
 		} else {
-			if (baseVo != null) {
+			if (mineEntity != null) {
 						cmd.success = false;
-						cmd.message = baseVo.getMessage();
+						cmd.message = mineEntity.getMessage();
 			} else {
 						cmd.success= false;
 						cmd.stateCode = "100001";
 						cmd.resData = cmd.context
 								.getString(R.string.the_network_is_dead);
-						cmd.message = baseVo.getMessage();
+						cmd.message = mineEntity.getMessage();
 			}
 		}
 		msg.obj = cmd;
@@ -1120,5 +1123,34 @@ public class Operation {
 		msg.obj = cmd;
 		return msg;
 
+	}
+	/**资讯新闻列表*/
+	public static Message executeInformation(Command command) {
+		HashMap<String, String> hashMap = (HashMap<String, String>) command.param;
+		String jsonString = CallServer.getInstance().callServer(command.method,
+				hashMap, command.context);
+		Message msg = Message.obtain();
+		msg.what = command.commandID;
+		InformationEntity infor = JsonVoParser.getInstance().getInformationEntityVo(jsonString);
+		if ((null != jsonString) && !"".equals(jsonString) && infor != null) {
+			if (infor.isSuccess()) {
+				command.success = true;
+				command.resData = infor;
+			} else {
+				command.message = infor.getMessage();
+				command.success = false;
+			}
+		} else {
+			if (infor != null) {
+				command.message = infor.getMessage();
+				command.success = false;
+			} else {
+				command.success = false;
+				command.message = command.context
+						.getString(R.string.the_network_is_dead);
+			}
+		}
+		msg.obj = command;
+		return msg;
 	}
 }

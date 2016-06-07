@@ -52,24 +52,15 @@
         android:id="@+id/no_purchase_course"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dip"
+        android:layout_marginTop="200dip"
         android:gravity="center"
         android:orientation="vertical"
         android:visibility="gone" >
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/no_record" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:text="您还没有报考课程哦"
-            android:textColor="@color/black_text"
-            android:textSize="@dimen/size_20" />
+            android:layout_height="200dp"
+            android:src="@drawable/lion" />
     </LinearLayout>
 
 

@@ -42,13 +42,13 @@
                 android:text="登录邮箱" />
 
             <TextView
-                android:id="@+id/et_login_name"
+                android:id="@+id/pull_mine_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="15dp"
                 android:background="@null"
-                android:hint="langdun@xingxing.com"
+
                 android:singleLine="true"
                 android:textColorHint="@color/text_color"
                 android:textSize="12sp" />
@@ -69,13 +69,13 @@
                 android:text="手机号码" />
 
             <TextView
-                android:id="@+id/et_login_passw"
+                android:id="@+id/pull_mine_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="15dp"
                 android:background="@null"
-                android:hint="13810250440"
+
                 android:singleLine="true"
                 android:textColorHint="@color/text_color"
                 android:textSize="12sp" />
@@ -95,13 +95,12 @@
                 android:text="真实姓名" />
 
             <TextView
-                android:id="@+id/et_name"
+                android:id="@+id/pull_mine_nickname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="15dp"
                 android:background="@null"
-                android:hint="酸奶"
                 android:singleLine="true"
                 android:textColorHint="@color/text_color"
                 android:textSize="12sp" />

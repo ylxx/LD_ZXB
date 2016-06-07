@@ -64,7 +64,6 @@ public class MineFragment extends BaseBackFragment {
         noPurchaseCourse =(LinearLayout) view.findViewById(R.id.no_purchase_course);
         plListview.getRefreshableView().addHeaderView(View.inflate(getActivity(), R.layout.header_minepagefragment, null));
         plListview.setMode(PullToRefreshBase.Mode.BOTH);
-
         ClickUtil.setClickListener(listener, ivGetMenu);
 
         ILoadingLayout loadingLayoutProxy = plListview
@@ -91,7 +90,6 @@ public class MineFragment extends BaseBackFragment {
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase refreshView) {
-
                 plListview.setMode(PullToRefreshBase.Mode.BOTH);
                 getMyPurchaseCourse();
             }
@@ -127,7 +125,6 @@ public class MineFragment extends BaseBackFragment {
     private void reSetPullToRefreshGridView() {
         purchaseCourseBodies.clear();
         plListview.setMode(PullToRefreshBase.Mode.BOTH);
-
     }
 
     private void getMyPurchaseCourse() {

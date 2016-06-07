@@ -357,4 +357,15 @@ public class RequestCommant {
 		PostAsynTask mPostAsynTask = new PostAsynTask(context, command);
 		mPostAsynTask.execute();
 	}
+	//用户头像
+	public void requestInformation(BaseHandler handler,Context context,HashMap<String, String> paramHashMap){
+		Command command = new Command(Constants.INFORMATION, handler);
+		command.param = paramHashMap;
+		command.method = "queryarticlelist?";
+		command.waitingMsg = "加载中，请稍候...";
+		command.showDialog = true;
+		command.context = context;
+		PostAsynTask mPostAsynTask = new PostAsynTask(context, command);
+		mPostAsynTask.execute();
+	}
 }

@@ -118,7 +118,6 @@ public class LoginActivity extends BaseFragmentActivity {
             //			LoginActivity activity = (LoginActivity) mActivity.get();
             if (msg.what == Constants.LOGIN) {
                 System.out.println(command.success);
-
                 if (command.success) {
                     UserLoginBodyVo person = (UserLoginBodyVo) command.resData;
                     person.getBody().setMobile(etUserN.getText().toString());

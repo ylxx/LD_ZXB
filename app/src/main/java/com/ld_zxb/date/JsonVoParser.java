@@ -1,6 +1,8 @@
 package com.ld_zxb.date;
 
 
+import com.ld_zxb.entity.InformationEntity;
+import com.ld_zxb.entity.MineEntity;
 import com.ld_zxb.vo.BaseVo;
 import com.ld_zxb.vo.HomePageBodyVo;
 import com.ld_zxb.vo.HomePageBottomEntityVo;
@@ -22,7 +24,12 @@ public class JsonVoParser {
 	public BaseVo getBasevo(String jsonvo){
 		return jsonBinder.fromJson(jsonvo, BaseVo.class);
 	}
-
+	/**
+	 * 个人信息
+	 * */
+	public MineEntity getMineEntity(String jsonvo){
+		return jsonBinder.fromJson(jsonvo, MineEntity.class);
+	}
 
 
 	/*
@@ -46,6 +53,10 @@ public class JsonVoParser {
 		//首页bottom加载
 		public HomePageBottomEntityVo getHomePageBottomEntityVo(String json){
 			return jsonBinder.fromJson(json, HomePageBottomEntityVo.class);
+		}
+		//资讯信息加载
+		public InformationEntity getInformationEntityVo(String json){
+			return jsonBinder.fromJson(json, InformationEntity.class);
 		}
 	//	//考证页加载
 	//	public ExamPageEntityVo getExamPageEntityVo(String json){

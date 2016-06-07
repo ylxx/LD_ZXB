@@ -46,10 +46,9 @@
         <activity android:name=".activity.login.LoginActivity" />
         <activity android:name=".activity.RegistActivity" />
         <activity android:name=".activity.MySettingsActivity" />
-        <activity android:name=".activity.secondary.WebEmbedActivity" />
-        <activity android:name=".activity.LikeClassActivity" />
-        <activity android:name=".activity.course.CourseDetailsActivty" />
-        <activity android:name=".activity.course.CourseClassifyActivity"></activity>
+        <activity android:name=".activity.secondary.WebEmbedActivity"></activity>
+        <activity android:name=".activity.LikeClassActivity"></activity>
+        <activity android:name=".activity.course.CourseDetailsActivty"></activity>
     </application>
 
 </manifest>

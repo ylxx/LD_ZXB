@@ -38,10 +38,33 @@
           android:layout_marginRight="@dimen/default_10dp"
           android:background="@null" />
    </RelativeLayout>
-   <TextView
+   <com.handmark.pulltorefresh.library.PullToRefreshListView
+       android:id="@+id/like_gridview"
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       android:text="暂无收藏课程"
-       android:textSize="@dimen/text_size_19"
-       android:gravity="center"/>
+       android:fastScrollEnabled="true"
+       android:gravity="center"
+       android:horizontalSpacing="10dp"
+       android:numColumns="2"
+       android:scrollbars="none"
+       android:divider="@null"
+       android:verticalSpacing="10dp" >
+   </com.handmark.pulltorefresh.library.PullToRefreshListView>
+
+
+   <LinearLayout
+       android:id="@+id/like_purchase_course"
+       android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="200dip"
+          android:gravity="center"
+          android:orientation="vertical"
+          android:visibility="gone" >
+
+      <ImageView
+          android:layout_width="wrap_content"
+          android:layout_height="200dp"
+          android:src="@drawable/lion" />
+   </LinearLayout>
+
 </LinearLayout>
