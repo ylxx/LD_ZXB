@@ -73,10 +73,11 @@
             android:src="@drawable/introduction_collection"/>
     </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/rl3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         android:layout_below="@+id/rl2"
         >
         <com.ld_zxb.view.ViewPagerIndictor
@@ -94,7 +95,7 @@
             android:layout_below="@+id/id_indictor">
         </android.support.v4.view.ViewPager>
 
-    </RelativeLayout>
+    </LinearLayout>
 
 
 

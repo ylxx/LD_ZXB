@@ -11,13 +11,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.handmark.pulltorefresh.library.ILoadingLayout;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.ld_zxb.R;
+import com.ld_zxb.activity.course.CourseClassifyActivity;
 import com.ld_zxb.activity.login.LoginActivity;
 import com.ld_zxb.activity.secondary.SearchActivity;
 import com.ld_zxb.activity.secondary.WebEmbedActivity;
@@ -28,6 +31,7 @@ import com.ld_zxb.controller.BaseHandler;
 import com.ld_zxb.controller.RequestCommant;
 import com.ld_zxb.fragment.BaseBackFragment;
 import com.ld_zxb.utils.ClickUtil;
+import com.ld_zxb.utils.SerialUtils;
 import com.ld_zxb.utils.ShowErrorDialogUtil;
 import com.ld_zxb.view.FlashView;
 import com.ld_zxb.view.FlashViewListener;
@@ -35,6 +39,7 @@ import com.ld_zxb.vo.HomePageBodyVo;
 import com.ld_zxb.vo.HomePageBottomEntityBodyVo;
 import com.ld_zxb.vo.HomePageBottomEntityVo;
 import com.ld_zxb.vo.HomePageImageVo;
+import com.ld_zxb.vo.UserLoginBodyVo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,8 +47,15 @@ import java.util.List;
 
 public class HomePageFragment extends BaseBackFragment {
 
+    private static final String TYPE_ONE = "1";
+    private static final String TYPE_TWO = "2";
+    private static final String TYPE_THREE = "3";
+    private DCApplication application;
+    private SerialUtils serialutols;
+    private boolean logIn;
     private Context mContext;
     private DCApplication mApplication;
+    private RelativeLayout rlOne,rlTwo,rlThree;
     private View view;
     static final int MENU_SET_MODE = 0;
     private PullToRefreshListView mPullToRefreshListView;
@@ -57,7 +69,7 @@ public class HomePageFragment extends BaseBackFragment {
     private HomePageAdapter adapter;
 
     private List<HomePageImageVo> lsBanner;
-    private String userId;
+    private int userId;
     //bottom轮播图相关
     private List<HomePageBottomEntityBodyVo.CourseList> courseLists = new ArrayList<HomePageBottomEntityBodyVo.CourseList>();
 
@@ -70,7 +82,28 @@ public class HomePageFragment extends BaseBackFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        serialutols = new SerialUtils();
+        application = (DCApplication) getActivity().getApplication();
+        if(serialutols.getObject(getActivity())==null){
+            startActivity(new Intent(getActivity(),LoginActivity.class));
+        }else{
+            try {
+                UserLoginBodyVo userinfo = serialutols.deSerialization(serialutols.getObject(getActivity()));
+                //用户Id(非268)
+                userId=userinfo.getBody().getId();
+
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+        logIn = application.getLogin();
+
         view = inflater.inflate(R.layout.fragment_homepage,null);
+
+
         initView();
         return view;
     }
@@ -83,8 +116,12 @@ public class HomePageFragment extends BaseBackFragment {
                 .findViewById(R.id.gridview);
         mPullToRefreshListView.getRefreshableView().addHeaderView(View.inflate(getActivity(),R.layout.header_homepagefragmen,null));
         mPullToRefreshListView.setMode(Mode.BOTH);
+        rlOne = (RelativeLayout) view.findViewById(R.id.rl_homepage_1);
+        rlTwo = (RelativeLayout) view.findViewById(R.id.rl_homepage_2);
+        rlThree = (RelativeLayout) view.findViewById(R.id.rl_homepage_3);
 
-        ClickUtil.setClickListener(clicklistener,ivSearch,ivToLogin);
+
+        ClickUtil.setClickListener(clicklistener,ivSearch,ivToLogin,rlOne,rlTwo,rlThree);
 
         ILoadingLayout loadingLayoutProxy = mPullToRefreshListView
                 .getLoadingLayoutProxy(true, false);
@@ -163,7 +200,26 @@ public class HomePageFragment extends BaseBackFragment {
                     startActivity(new Intent(getActivity(),SearchActivity.class));
                     break;
                 case R.id.homepage_right_bar:
-                    startActivity(new Intent(getActivity(),LoginActivity.class));
+                    if(logIn){
+                        startActivity(new Intent(getActivity(),LoginActivity.class));
+                    }else{
+                        startActivity(new Intent(getActivity(),LoginActivity.class));
+                    }
+                    break;
+                case R.id.rl_homepage_1:
+                    Intent intentOne = new Intent(getActivity(), CourseClassifyActivity.class);
+                    intentOne.putExtra("type",TYPE_ONE);
+                    startActivity(intentOne);
+                    break;
+                case R.id.rl_homepage_2:
+                    Intent intentTwo = new Intent(getActivity(), CourseClassifyActivity.class);
+                    intentTwo.putExtra("type",TYPE_TWO);
+                    startActivity(intentTwo);
+                    break;
+                case R.id.rl_homepage_3:
+                    Intent intentThree = new Intent(getActivity(), CourseClassifyActivity.class);
+                    intentThree.putExtra("type",TYPE_THREE);
+                    startActivity(intentThree);
                     break;
                 default:
                     break;

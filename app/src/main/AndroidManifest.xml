@@ -49,6 +49,7 @@
         <activity android:name=".activity.secondary.WebEmbedActivity"></activity>
         <activity android:name=".activity.LikeClassActivity"></activity>
         <activity android:name=".activity.course.CourseDetailsActivty"></activity>
+        <activity android:name=".activity.course.CourseClassifyActivity"></activity>
     </application>
 
 </manifest>

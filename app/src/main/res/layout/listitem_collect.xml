@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:id="@+id/ll_colect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginBottom="@dimen/margin_10"
+        android:layout_marginLeft="@dimen/default_5dp"
+        android:background="@drawable/shape_circle_white"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/colect_course_iv1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"
+            android:src="@drawable/default_picture" />
+
+        <TextView
+            android:id="@+id/colect_course_name1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/default_5dp"
+            android:text="课程"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/colect_course_teacher1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/default_5dp"
+            android:layout_marginBottom="@dimen/default_5dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="主讲："
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+
+    </LinearLayout>
+	<View 
+	    android:layout_width="5dp"
+	    android:layout_height="match_parent"
+	    android:background="#00ffffff"/>
+    <LinearLayout
+        android:id="@+id/ll2_colect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginBottom="@dimen/margin_10"
+        android:layout_marginLeft="@dimen/default_5dp"
+        android:layout_marginRight="@dimen/default_5dp"
+        android:background="@drawable/shape_circle_white"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/colect_course_iv2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/default_picture" />
+
+        <TextView
+            android:id="@+id/colect_course_name2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/default_5dp"
+            android:text="课程"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/colect_course_teacher2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/default_5dp"
+            android:layout_marginBottom="@dimen/default_5dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="主讲："
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

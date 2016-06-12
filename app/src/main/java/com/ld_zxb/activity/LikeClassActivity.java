@@ -1,26 +1,31 @@
 package com.ld_zxb.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.handmark.pulltorefresh.library.ILoadingLayout;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.ld_zxb.R;
-import com.ld_zxb.adapter.PurchaseCourseAdapter;
+import com.ld_zxb.activity.login.LoginActivity;
+import com.ld_zxb.adapter.MyColectListAdapter;
 import com.ld_zxb.application.DCApplication;
 import com.ld_zxb.config.Constants;
 import com.ld_zxb.controller.BaseHandler;
 import com.ld_zxb.controller.RequestCommant;
 import com.ld_zxb.utils.ClickUtil;
+import com.ld_zxb.utils.SerialUtils;
 import com.ld_zxb.utils.ShowErrorDialogUtil;
 import com.ld_zxb.view.CircleImageView;
 import com.ld_zxb.view.LikeClassPopupWindow;
-import com.ld_zxb.vo.MyPurchaseCourseEntityVo;
+import com.ld_zxb.vo.CollectCourseEntityVo;
+import com.ld_zxb.vo.UserLoginBodyVo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,25 +33,44 @@ import java.util.List;
 
 public class LikeClassActivity extends BaseFragmentActivity {
     private DCApplication mApplication;
-    CircleImageView circleImageView;
+    private CircleImageView circleImageView;
     private PullToRefreshListView plListview;
-    private PurchaseCourseAdapter adapter;
     private LinearLayout noPurchaseCourse;
-    ImageView likeclass_right_bar, likeclass_Left_back;
-    private List<MyPurchaseCourseEntityVo.PurchaseCourseBody> purchaseCourseBodies = new ArrayList<MyPurchaseCourseEntityVo.PurchaseCourseBody>();
-    private List<MyPurchaseCourseEntityVo.PurchaseCourseBody> purchaseCourseBody = new ArrayList<MyPurchaseCourseEntityVo.PurchaseCourseBody>();
+    private ImageView likeclass_right_bar, likeclass_Left_back;
     private int currentPage = 1;
+    private SerialUtils serialutols;
+    private int userId;
+    private List<CollectCourseEntityVo.Entity.CourseList> courseLists;
+    private List<CollectCourseEntityVo.Entity.CourseList> courseList;
+    private MyColectListAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_likeclass);
+        serialutols = new SerialUtils();
+        if(serialutols.getObject(this)==null){
+            Toast.makeText(this, "请先登录再查看视频列表！", Toast.LENGTH_LONG).show();
+            startActivity(new Intent(this,LoginActivity.class));
+        }else{
+            try {
+                UserLoginBodyVo userinfo = serialutols.deSerialization(serialutols.getObject(this));
+                //用户Id(非268)
+                userId=userinfo.getBody().getId();
+
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
         initView();
     }
 
     private void initView() {
+        mApplication = (DCApplication) this.getApplication();
         likeclass_right_bar = (ImageView) findViewById(R.id.likeclass_right_bar);
         likeclass_Left_back = (ImageView) findViewById(R.id.likeclass_Left_back);
-        mApplication = (DCApplication) this.getApplication();
+        courseLists = new ArrayList<CollectCourseEntityVo.Entity.CourseList>();
+        courseList = new ArrayList<CollectCourseEntityVo.Entity.CourseList>();
         plListview = (PullToRefreshListView) findViewById(R.id.like_gridview);
         noPurchaseCourse = (LinearLayout) findViewById(R.id.like_purchase_course);
         plListview.getRefreshableView().addHeaderView(View.inflate(this, R.layout.header_minepagefragment, null));
@@ -69,7 +93,7 @@ public class LikeClassActivity extends BaseFragmentActivity {
 
             @Override
             public void onPullDownToRefresh(PullToRefreshBase refreshView) {
-                purchaseCourseBodies.clear();
+                courseLists.clear();
                 currentPage = 1;
                 getMyPurchaseCourse();
 
@@ -89,13 +113,14 @@ public class LikeClassActivity extends BaseFragmentActivity {
     }
 
     private void reSetPullToRefreshGridView() {
-        purchaseCourseBodies.clear();
+        courseLists.clear();
         plListview.setMode(PullToRefreshBase.Mode.BOTH);
     }
     private void getMyPurchaseCourse() {
         HashMap<String, String> hashmap = new HashMap<String, String>();
-        hashmap.put("userId", String.valueOf("1706"));
-        new RequestCommant().getPurchaseCourse(new ReauestHandler(this), this, hashmap);
+        hashmap.put("currentPage", String.valueOf(currentPage));
+        hashmap.put("userId", String.valueOf(userId));
+        new RequestCommant().getCollectCourse(new ReauestHandler(this), this, hashmap);
 
     }
 
@@ -128,23 +153,23 @@ public class LikeClassActivity extends BaseFragmentActivity {
         public void handleMessage(Message msg) {
             // TODO Auto-generated method stub
             super.handleMessage(msg);
-            if (msg.what == Constants.GET_PURCHASE_COURSE) {
+            if (msg.what == Constants.GET_COLLECT_COURSE) {
                 System.out.println(command.success);
                 plListview.onRefreshComplete();
                 if (command.success) {
-                    MyPurchaseCourseEntityVo purchaseCourseEntityVo = (MyPurchaseCourseEntityVo) command.resData;
-                    purchaseCourseBody = purchaseCourseEntityVo.getPurchaseCourseBody();
-                    purchaseCourseBodies.addAll(purchaseCourseBody);
+                    CollectCourseEntityVo collectCourseEntityVo = (CollectCourseEntityVo) command.resData;
+                    courseList = collectCourseEntityVo.getEntity().getCourseList();
+                    courseLists.addAll(courseList);
 
-                    if (purchaseCourseBodies.size() <= 0) {
+                    if (courseLists.size() <= 0) {
                         plListview.setVisibility(View.GONE);
                         noPurchaseCourse.setVisibility(View.VISIBLE);
                     } else {
                         plListview.setVisibility(View.VISIBLE);
                         noPurchaseCourse.setVisibility(View.GONE);
                     }
-//                    adapter.notifyDataSetChanged();
-                    currentPage++;
+                    adapter = new MyColectListAdapter(LikeClassActivity.this,courseLists);
+                    plListview.setAdapter(adapter);
                     if (currentPage > 0) {
                         plListview.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
                     }

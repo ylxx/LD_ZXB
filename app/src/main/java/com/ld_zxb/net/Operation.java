@@ -8,6 +8,7 @@ import com.ld_zxb.date.JsonVoParser;
 import com.ld_zxb.entity.InformationEntity;
 import com.ld_zxb.entity.MineEntity;
 import com.ld_zxb.vo.BaseVo;
+import com.ld_zxb.vo.CollectCourseEntityVo;
 import com.ld_zxb.vo.HomePageBodyVo;
 import com.ld_zxb.vo.HomePageBottomEntityVo;
 import com.ld_zxb.vo.MyPurchaseCourseEntityVo;
@@ -532,7 +533,7 @@ public class Operation {
 	 * 
 	 * @param cmd
 	 * @return
-	 *//*
+	 */
 	@SuppressWarnings("unchecked")
 	public Message executeGetCollectCourse(Command cmd) {
 		HashMap<String, String> hashMap = (HashMap<String, String>) cmd.param;
@@ -564,7 +565,7 @@ public class Operation {
 		return msg;
 
 	}
-	*//**
+	/**
 	 * 收藏课程
 	 * 
 	 * @param cmd

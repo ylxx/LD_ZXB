@@ -7,6 +7,7 @@ import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.ld_zxb.R;
 import com.ld_zxb.activity.BaseFragmentActivity;
@@ -32,6 +33,7 @@ public class LoginActivity extends BaseFragmentActivity {
     private SerialUtils serialutols;
     private Button btLogin,btRegist;
     private EditText etUserN,etPassW;
+    private int userId;
     /**
      * 用户名&密码
      */
@@ -41,6 +43,23 @@ public class LoginActivity extends BaseFragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        serialutols = new SerialUtils();
+        if(serialutols.getObject(this)==null){
+            Toast.makeText(this, "请先登录再查看视频列表！", Toast.LENGTH_LONG).show();
+            startActivity(new Intent(this,LoginActivity.class));
+        }else{
+            try {
+                UserLoginBodyVo userinfo = serialutols.deSerialization(serialutols.getObject(this));
+                //用户Id(非268)
+                userId=userinfo.getBody().getId();
+
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+
         setContentViewWithActionBar(R.layout.activity_login,"课程","登录");
         userID = UserID.getInstance();
         userID.setUserName("");
@@ -48,6 +67,7 @@ public class LoginActivity extends BaseFragmentActivity {
     }
 
     private void initview() {
+        application = (DCApplication) getApplication();
         btLogin = (Button) findViewById(R.id.bt_login);
         btRegist = (Button) findViewById(R.id.bt_to_regist);
         etUserN = (EditText) findViewById(R.id.et_user_name);
@@ -96,8 +116,8 @@ public class LoginActivity extends BaseFragmentActivity {
         HashMap<String, String> hashmap = new HashMap<String, String>();
 
         //密码加密
-        //		String psw = Base64Utils.encode(userpsdET.getText().toString()
-        //				.getBytes());
+        /*String psw = Base64Utils.encode(userpsdET.getText().toString()
+        				.getBytes());*/
         hashmap.put("account", etUserN.getText().toString());
         hashmap.put("userPassword", etPassW.getText().toString());
 
@@ -126,7 +146,6 @@ public class LoginActivity extends BaseFragmentActivity {
                      */
                     SPUtils.put(getApplication(), "login", true);
                     application.setUserloginbodyvo(person);
-                    //					boolean loginStr = true;//判断是否在登录状态的参数，用做自动登录的判断条件
                     application.setLogin(true);//将判断是否是登录状态的字符串存在application中
                     //若登录成功，则把信息存数到反序列对象中
                     try {
