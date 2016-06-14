@@ -2,51 +2,66 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/bkcolor">
 
 
-    <RelativeLayout
-        android:id="@+id/rl"
+    <FrameLayout
+        android:id="@+id/fl_course_details"
         android:layout_width="match_parent"
         android:layout_height="@dimen/default_150dp"
         android:background="@drawable/default_picture">
+        
+       <ImageView
+           android:id="@+id/course_details_iv_logo"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           />
 
-        <TextView
-            android:id="@+id/tv_coursedetail_teacher"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/default_10dp"
-            android:layout_marginBottom="@dimen/default_5dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentBottom="true"
-            android:text="主讲老师："
-            android:textColor="@color/black"
-            android:textSize="@dimen/default_15sp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_above="@+id/tv_coursedetail_teacher"
-            android:text="财务管理理论与实务"
-            android:textSize="@dimen/default_18sp"
-            android:textColor="@color/black"/>
+            android:layout_marginBottom="@dimen/default_10dp">
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/tv_coursedetail_teacher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/default_10dp"
+                android:layout_marginBottom="@dimen/default_5dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:text="主讲老师："
+                android:textColor="@color/black"
+                android:textSize="@dimen/default_15sp"/>
+            <TextView
+                android:id="@+id/tv_coursedetails_course_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_above="@+id/tv_coursedetail_teacher"
+                android:text="财务管理理论与实务"
+                android:textSize="@dimen/default_18sp"
+                android:textColor="@color/black"/>
 
-    <WebView
-        android:id="@+id/wv_coursedetails"
+        </RelativeLayout>
+
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_coursedetails_descript"
         android:layout_width="match_parent"
         android:layout_height="@dimen/default_80dp"
+        android:padding="@dimen/default_5dp"
         android:background="@color/blue"
-        android:layout_below="@+id/rl">
-    </WebView>
+        android:layout_below="@+id/fl_course_details">
+    </TextView>
 
     <RelativeLayout
         android:id="@+id/rl2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/wv_coursedetails"
+        android:layout_below="@+id/tv_coursedetails_descript"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
         <ImageView
@@ -79,6 +94,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_below="@+id/rl2"
+        android:visibility="visible"
         >
         <com.ld_zxb.view.ViewPagerIndictor
             android:id="@+id/id_coursedetail_indictor"

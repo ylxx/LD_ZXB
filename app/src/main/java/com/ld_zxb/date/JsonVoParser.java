@@ -8,6 +8,7 @@ import com.ld_zxb.vo.CollectCourseEntityVo;
 import com.ld_zxb.vo.HomePageBodyVo;
 import com.ld_zxb.vo.HomePageBottomEntityVo;
 import com.ld_zxb.vo.MyPurchaseCourseEntityVo;
+import com.ld_zxb.vo.ParticularCourseEntityVo;
 import com.ld_zxb.vo.RegisterVo;
 import com.ld_zxb.vo.UserLoginBodyVo;
 
@@ -79,10 +80,10 @@ public class JsonVoParser {
 	//	public CourseEntityVo getCourseEntityVo(String json){
 	//		return jsonBinder.fromJson(json, CourseEntityVo.class);
 	//	}
-	//	//课程详情
-	//	public ParticularCourseEntityVo getParticularCourseEntityvo(String json){
-	//		return jsonBinder.fromJson(json, ParticularCourseEntityVo.class);
-	//	}
+		//课程详情
+		public ParticularCourseEntityVo getParticularCourseEntityvo(String json){
+			return jsonBinder.fromJson(json, ParticularCourseEntityVo.class);
+		}
 		//已购买课程列表
 		public MyPurchaseCourseEntityVo getMyPurchaseCourseEntityVo(String json){
 			return jsonBinder.fromJson(json, MyPurchaseCourseEntityVo.class);

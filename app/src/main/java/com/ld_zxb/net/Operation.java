@@ -12,6 +12,7 @@ import com.ld_zxb.vo.CollectCourseEntityVo;
 import com.ld_zxb.vo.HomePageBodyVo;
 import com.ld_zxb.vo.HomePageBottomEntityVo;
 import com.ld_zxb.vo.MyPurchaseCourseEntityVo;
+import com.ld_zxb.vo.ParticularCourseEntityVo;
 import com.ld_zxb.vo.UserLoginBodyVo;
 
 import java.util.HashMap;
@@ -642,7 +643,7 @@ public class Operation {
 	 * 
 	 * @param cmd
 	 * @return
-	 *//*
+	 */
 	@SuppressWarnings("unchecked")
 	public Message executeGetParticularCourse(Command cmd) {
 		HashMap<String, String> hashMap = (HashMap<String, String>) cmd.param;
@@ -650,7 +651,7 @@ public class Operation {
 				hashMap, cmd.context);
 		Message msg = Message.obtain();
 		msg.what = cmd.commandID;
-		ParticularCourseEntityVo  particularCourseEntityVo = JsonVoParser.getInstance().getParticularCourseEntityvo(jsonString);
+		ParticularCourseEntityVo particularCourseEntityVo = JsonVoParser.getInstance().getParticularCourseEntityvo(jsonString);
 		BaseVo baseVo = JsonVoParser.getInstance().getBasevo(jsonString);
 		if ((null != jsonString) && !"".equals(jsonString) && baseVo != null) {
 			if (baseVo.getSuccess()) {
@@ -674,7 +675,7 @@ public class Operation {
 		return msg;
 
 	}
-	*//**
+	/**
 	 * 获取课程讨论
 	 * 
 	 * @param cmd

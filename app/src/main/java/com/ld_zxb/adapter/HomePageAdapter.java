@@ -134,8 +134,8 @@ public class HomePageAdapter extends BaseAdapter{
             HomePageBottomEntityBodyVo.CourseList courseList1 = courseLists.get(position * 2);
             String url = courseList1.getLogo();
             ImageLoader.getInstance().displayImage("http://static.langdunzx.com/" + url, holder.ivCourse1, options);
-            holder.courseTeacher1.setText("主讲：" + courseList1.getTeacherList().get(0));
-            holder.courseName1.setText(courseList1.getName());
+            holder.courseTeacher1.setText("主讲：" + courseList1.getName());
+            holder.courseName1.setText(courseList1.getTitle());
         }
         if (position * 2 + 1 < courseLists.size()) {
             holder.ll2.setVisibility(View.VISIBLE);
@@ -143,8 +143,9 @@ public class HomePageAdapter extends BaseAdapter{
             // String url =
             ImageLoader.getInstance().displayImage(
                     "http://static.langdunzx.com/"+courseList2.getLogo(), holder.ivCourse2, options);
-            holder.courseTeacher2.setText("主讲："+courseList2.getTeacherList().get(0));
-            holder.courseName2.setText(courseList2.getName());
+//            holder.courseTeacher2.setText("主讲："+courseList2.getTeacherList().get(0));
+            holder.courseTeacher2.setText("主讲：" + courseList2.getName());
+            holder.courseName2.setText(courseList2.getTitle());
 
         } else {
             holder.ll2.setVisibility(View.INVISIBLE);
@@ -153,10 +154,11 @@ public class HomePageAdapter extends BaseAdapter{
         holder.ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Toast.makeText(context,String.valueOf(position*2),Toast.LENGTH_SHORT).show();
+
                 Intent intent1 = new Intent(context,CourseDetailsActivty.class);
                 String courseId1 = String.valueOf(courseLists.get(position*2).getCourseId());
                 intent1.putExtra("courseId",courseId1);
+                Toast.makeText(context,courseId1,Toast.LENGTH_SHORT).show();
                 context.startActivity(intent1);
             }
         });
@@ -164,10 +166,10 @@ public class HomePageAdapter extends BaseAdapter{
         holder.ll2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,String.valueOf(position*2+1),Toast.LENGTH_SHORT).show();
                 Intent intent2 = new Intent(context,CourseDetailsActivty.class);
                 String courseId2 = String.valueOf(courseLists.get(position*2+1).getCourseId());
                 intent2.putExtra("courseId",courseId2);
+                Toast.makeText(context,courseId2,Toast.LENGTH_SHORT).show();
                 context.startActivity(intent2);
             }
         });

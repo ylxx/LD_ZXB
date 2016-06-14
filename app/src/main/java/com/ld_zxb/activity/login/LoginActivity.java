@@ -44,7 +44,7 @@ public class LoginActivity extends BaseFragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         serialutols = new SerialUtils();
-        if(serialutols.getObject(this)==null){
+        /*if(serialutols.getObject(this)==null){
             Toast.makeText(this, "请先登录再查看视频列表！", Toast.LENGTH_LONG).show();
             startActivity(new Intent(this,LoginActivity.class));
         }else{
@@ -57,7 +57,7 @@ public class LoginActivity extends BaseFragmentActivity {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-        }
+        }*/
 
 
         setContentViewWithActionBar(R.layout.activity_login,"课程","登录");
