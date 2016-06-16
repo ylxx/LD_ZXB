@@ -108,6 +108,13 @@ public class InformationFragment extends BaseBackFragment {
     private void initViews() {
         mViewPager = (ViewPager) view.findViewById(R.id.id_viewPager);
         mIndictor = (ViewPagerIndictor) view.findViewById(R.id.id_indictor);
+        ivToLogin = (ImageView) view.findViewById(R.id.informationpage_right_bar);
+        ivToLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                startActivity(new Intent(getActivity(), Main1Activity.class));
+            }
+        });
     }
     /**初始化系统自带adapter*/
     private void initDatas() {

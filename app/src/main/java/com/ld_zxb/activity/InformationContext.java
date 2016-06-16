@@ -8,8 +8,8 @@ import android.widget.TextView;
 import com.ld_zxb.R;
 
 public class InformationContext extends AppCompatActivity {
-    String ID,Title,mContext;
-    TextView inforTitle,inforContext;
+    String ID,Title,mContext,inforAuthor,inforTimer,inforSource;
+    TextView tv_Title,tv_Context,tv_date,tv_Source;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,11 +18,22 @@ public class InformationContext extends AppCompatActivity {
         initView();
     }
     /**初始化view*/
-    private void initView() {
-        inforTitle = (TextView) findViewById(R.id.infor_title);
-        inforContext = (TextView) findViewById(R.id.infor_context);
-        inforTitle.setText(Title);
-        inforContext.setText(mContext);
+    private void initView()  {
+
+            tv_Title = (TextView) findViewById(R.id.infor_title);
+            tv_Context = (TextView) findViewById(R.id.infor_context);
+            tv_date = (TextView) findViewById(R.id.infor_timer);
+            tv_Source = (TextView) findViewById(R.id.infor_source);
+            tv_Title.setText(Title);
+            tv_Source.setText(inforSource);
+            tv_date.setText(inforTimer);
+//            String data = mContext.replace("\r\n","");
+//            String datas = Base64Decoder.decode(data);
+//            String s = URLDecoder.decode(data,"utf-8");
+//            LogUtil.e("info","datas"+datas);
+//            Toast.makeText(InformationContext.this, "指定编码"+ mContext, Toast.LENGTH_SHORT).show();
+            tv_Context.setText(mContext);
+
     }
 
     /**获取Intent中的数据*/
@@ -31,5 +42,8 @@ public class InformationContext extends AppCompatActivity {
         ID = in.getStringExtra("InforID");
         Title = in.getStringExtra("InforTitle");
         mContext = in.getStringExtra("InforContext");
+        inforAuthor= in.getStringExtra("InforAuthor");
+        inforSource = in.getStringExtra("InforSource");
+        inforTimer = in.getStringExtra("inforTimer");
     }
 }

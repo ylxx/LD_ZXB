@@ -3,7 +3,7 @@
     <color name="colorPrimary">#198458</color>
     <color name="colorPrimaryDark">#137852</color>
     <color name="colorAccent">#DEE3E6</color>
-    //#DEE3E6
+    <color name="searchBk">#00000000</color>
     <color name="bkcolor">#EEEEF3</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
@@ -32,7 +32,7 @@
     <color name="text_black">#494949</color>
     <color name="text_black1">#666666</color>
     <color name="text_black_shallow">#747474</color>
-
+    <color name="search_beijing">#CAC9CF</color>
     <item type="color" name="divider_gray">@color/cor_d7d7d7</item>
     <item type="color" name="divider_line">@color/cor_d7d7d7</item>
 </resources>

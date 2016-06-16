@@ -49,7 +49,7 @@ public class LikeClassActivity extends BaseFragmentActivity {
         setContentView(R.layout.activity_likeclass);
         serialutols = new SerialUtils();
         if(serialutols.getObject(this)==null){
-            Toast.makeText(this, "请先登录再查看视频列表！", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "收藏的课程！", Toast.LENGTH_LONG).show();
             startActivity(new Intent(this,LoginActivity.class));
         }else{
             try {

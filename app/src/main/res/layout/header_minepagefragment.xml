@@ -13,7 +13,4 @@
         android:text="报读的课程："
         android:textColor="@color/black"
         android:background="@color/white"/>
-
-
-
 </LinearLayout>

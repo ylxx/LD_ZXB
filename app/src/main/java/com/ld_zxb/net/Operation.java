@@ -5,8 +5,9 @@ import android.os.Message;
 import com.ld_zxb.R;
 import com.ld_zxb.config.Command;
 import com.ld_zxb.date.JsonVoParser;
-import com.ld_zxb.entity.InformationEntity;
 import com.ld_zxb.entity.MineEntity;
+import com.ld_zxb.entity.SearchEntity;
+import com.ld_zxb.entity.infor;
 import com.ld_zxb.vo.BaseVo;
 import com.ld_zxb.vo.CollectCourseEntityVo;
 import com.ld_zxb.vo.HomePageBodyVo;
@@ -1129,22 +1130,22 @@ public class Operation {
 	/**资讯新闻列表*/
 	public static Message executeInformation(Command command) {
 		HashMap<String, String> hashMap = (HashMap<String, String>) command.param;
-		String jsonString = CallServer.getInstance().callServer(command.method,
+		String jsonString = CallServer.getInstance().callServers(command.method,
 				hashMap, command.context);
 		Message msg = Message.obtain();
 		msg.what = command.commandID;
-		InformationEntity infor = JsonVoParser.getInstance().getInformationEntityVo(jsonString);
+		infor infor = JsonVoParser.getInstance().getInformationEntityVo(jsonString);
 		if ((null != jsonString) && !"".equals(jsonString) && infor != null) {
-			if (infor.isSuccess()) {
+//			if (infor.isSuccess()) {
 				command.success = true;
 				command.resData = infor;
-			} else {
-				command.message = infor.getMessage();
-				command.success = false;
-			}
+//			} else {
+//				command.message = infor.getMessage();
+//				command.success = false;
+//			}
 		} else {
 			if (infor != null) {
-				command.message = infor.getMessage();
+//				command.message = infor.getMessage();
 				command.success = false;
 			} else {
 				command.success = false;
@@ -1154,5 +1155,36 @@ public class Operation {
 		}
 		msg.obj = command;
 		return msg;
+	}
+	/*个人头像修改*/
+	@SuppressWarnings("unchecked")
+	public Message executeSearch(Command cmd) {
+		HashMap<String, String> hashMap = (HashMap<String, String>) cmd.param;
+		String jsonString = CallServer.getInstance().callServer(cmd.method,
+				hashMap, cmd.context);
+		Message msg = Message.obtain();
+		msg.what = cmd.commandID;
+		SearchEntity searchEntity = JsonVoParser.getInstance().getSearchEntity(jsonString);
+		if ((null != jsonString) && !"".equals(jsonString) && searchEntity != null) {
+			if (searchEntity.isSuccess()) {
+				cmd.success = true;
+				cmd.resData = searchEntity;
+			} else {
+				cmd.message = searchEntity.getMessage();
+				cmd.success = false;
+			}
+		} else {
+			if (searchEntity != null) {
+				cmd.message = searchEntity.getMessage();
+				cmd.success = false;
+			} else {
+				cmd.success = false;
+				cmd.message = cmd.context
+						.getString(R.string.the_network_is_dead);
+			}
+		}
+		msg.obj = cmd;
+		return msg;
+
 	}
 }

@@ -1,8 +1,9 @@
 package com.ld_zxb.date;
 
 
-import com.ld_zxb.entity.InformationEntity;
 import com.ld_zxb.entity.MineEntity;
+import com.ld_zxb.entity.SearchEntity;
+import com.ld_zxb.entity.infor;
 import com.ld_zxb.vo.BaseVo;
 import com.ld_zxb.vo.CollectCourseEntityVo;
 import com.ld_zxb.vo.HomePageBodyVo;
@@ -33,7 +34,12 @@ public class JsonVoParser {
 		return jsonBinder.fromJson(jsonvo, MineEntity.class);
 	}
 
-
+	/**
+	 * 搜索
+	 * */
+	public SearchEntity getSearchEntity(String jsonvo){
+		return jsonBinder.fromJson(jsonvo, SearchEntity.class);
+	}
 	/*
 	 * 注册
 	 */
@@ -57,8 +63,8 @@ public class JsonVoParser {
 			return jsonBinder.fromJson(json, HomePageBottomEntityVo.class);
 		}
 		//资讯信息加载
-		public InformationEntity getInformationEntityVo(String json){
-			return jsonBinder.fromJson(json, InformationEntity.class);
+		public infor getInformationEntityVo(String json){
+			return jsonBinder.fromJson(json, infor.class);
 		}
 	//	//考证页加载
 	//	public ExamPageEntityVo getExamPageEntityVo(String json){

@@ -102,4 +102,6 @@ public class Constants {
 	public static final int USER_PHOTO=++INIT_POST_IDENTIFIER;
 	//资讯列表
 	public static final int INFORMATION=++INIT_POST_IDENTIFIER;
+	//用户查询
+	public static final int SEARCH=++INIT_POST_IDENTIFIER;
 }

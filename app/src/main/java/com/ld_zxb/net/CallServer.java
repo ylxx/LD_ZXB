@@ -1,15 +1,12 @@
 package com.ld_zxb.net;
 
-import java.io.IOException;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
-import java.util.Set;
-import java.util.UUID;
+import android.app.Activity;
+import android.content.Context;
+import android.telephony.TelephonyManager;
+import android.util.DisplayMetrics;
+
+import com.ld_zxb.config.Constants;
+import com.ld_zxb.utils.Logge;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -22,13 +19,17 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.util.EntityUtils;
-import com.ld_zxb.config.Constants;
-import com.ld_zxb.utils.Logge;
 
-import android.app.Activity;
-import android.content.Context;
-import android.telephony.TelephonyManager;
-import android.util.DisplayMetrics;
+import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Set;
+import java.util.UUID;
 
 
 /**
@@ -44,7 +45,8 @@ import android.util.DisplayMetrics;
  *    修改内容：
  * </pre>
  */
-public class CallServer { 
+public class CallServer {
+	private String INFO = "http://192.168.0.161:8080/icad/basic/edu/news/mobileindex.action?entity.colstr2=icad";
 	private String HTTP_URL = "http://www.langdunzx.com/webapp/";// 外网
 	private String HTTP_URL_HOME_DATA = "http://un.ehgo.com/u/255/";// 首页轮播图
 	private static CallServer _callServer;
@@ -197,8 +199,65 @@ public class CallServer {
 		Logge.LogI("请求服务器返回数据 : " + result);
 		return result;
 	}
-	
-	
+	/**
+	 * HTTP POST请求(268)
+	 *
+	 * @param method
+	 * @param reqParams
+	 * @param context
+	 * @return
+	 */
+	private String goHttpPostssssss(String method, HashMap<String, String> reqParams,
+							  Context context) {
+		Logge.LogI("url is : " + INFO);
+		Logge.LogI("method is : " + method);
+		String result = null;
+		String uri = INFO + method;
+		Logge.LogI("uri is : " + uri);
+		HttpPost post = new HttpPost(uri);
+		HttpResponse response;
+
+		try {
+			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+			Set<String> paramKeySet = reqParams.keySet();
+			Iterator<String> iterator = paramKeySet.iterator();
+			while (iterator.hasNext()) {
+
+				String key = iterator.next();
+				Logge.LogI("param is : " + key + " = " + reqParams.get(key));
+				nameValuePairs.add(new BasicNameValuePair(key, reqParams
+						.get(key)));
+
+			}
+
+			post.setEntity(new UrlEncodedFormEntity(nameValuePairs, "utf-8"));
+			Logge.LogI(post.getURI().toString());
+			/**
+			 * 创建Http Header
+			 */
+			// createPostHeader(context, post);
+
+			DefaultHttpClient httpClient = (DefaultHttpClient) getHttpClient();
+			response = httpClient.execute(post);
+
+			if (response.getStatusLine().getStatusCode() != 404) {
+				result = EntityUtils.toString(response.getEntity(), "utf-8");
+			} else {
+				Logge.LogI("" + response.getStatusLine().getStatusCode());
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			Logge.LogI("CallServer | " + e.getMessage());
+			return null;
+		} finally {
+			post.abort();
+		}
+		Logge.LogI("请求服务器返回数据 : " + result);
+		return result;
+	}
+
+
+
 	/**
 	 * HTTP POST请求(朗顿)
 	 * 
@@ -324,11 +383,16 @@ public class CallServer {
 	 */
 	public String callServer(String method, HashMap<String, String> reqParams,
 			Context context) {
-		 String responseString = goHttpPost(method, reqParams, context);
-//		String responseString = goHttpsPost(method, reqParams, context);
+		String responseString = goHttpPost(method, reqParams, context);
+//		String responseString = goHttpPostssssss(method, reqParams, context);
 		return responseString;
 	}
-	
+	public String callServers(String method, HashMap<String, String> reqParams,
+							 Context context) {
+//		String responseString = goHttpPost(method, reqParams, context);
+		String responseString = goHttpPostssssss(method, reqParams, context);
+		return responseString;
+	}
 	/**
 	 * 请求服务器接收返回(朗顿)
 	 * 	get

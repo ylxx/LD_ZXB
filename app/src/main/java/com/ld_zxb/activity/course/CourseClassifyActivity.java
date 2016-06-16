@@ -1,10 +1,13 @@
 package com.ld_zxb.activity.course;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.ld_zxb.R;
 import com.ld_zxb.activity.BaseFragmentActivity;
@@ -24,6 +27,8 @@ public class CourseClassifyActivity extends BaseFragmentActivity {
     private List<String> mTitles = Arrays.asList("单证考试", "双证考试");
     private List<Fragment> mContents = new ArrayList<Fragment>();
     private FragmentPagerAdapter mAdapter;
+    private RelativeLayout rl3;
+    private ImageView iv_courseclass_down;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,15 +46,26 @@ public class CourseClassifyActivity extends BaseFragmentActivity {
         mViewPager.setAdapter(mAdapter);
         mIndictor.setViewPager(mViewPager,0);
     }
-
+    int i=0;
     private void initView() {
         mIndictor = (ViewPagerIndictor) findViewById(R.id.id_courseclassify_indictor);
         mViewPager = (ViewPager) findViewById(R.id.id_courseclassify_viewPager);
+        iv_courseclass_down = (ImageView) findViewById(R.id.iv_courseclass_down);
+        rl3 = (RelativeLayout) findViewById(R.id.course_rl3);
+        iv_courseclass_down.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(i==0){
+                    rl3.setVisibility(View.GONE);i++;
+                }else{
+                    rl3.setVisibility(View.VISIBLE);i=0;
+                }
+            }
+        });
     }
 
     private void initDatas() {
         mContents.clear();
-
         mAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
 
             @Override

@@ -5,16 +5,44 @@
     android:layout_height="match_parent"
     android:background="@color/gray"
     android:orientation="vertical"
+    android:layout_marginLeft="@dimen/default_5dp"
+    android:layout_marginRight="@dimen/default_10dp"
     tools:context="com.ld_zxb.activity.InformationContext">
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
     <TextView
         android:id="@+id/infor_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="@dimen/default_20dp"
+        android:text=""
         />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/infor_source"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="来源："/>
+    <TextView
+        android:id="@+id/infor_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:text=""/>
+    </RelativeLayout>
     <TextView
         android:id="@+id/infor_context"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
+    </LinearLayout>
+    </ScrollView>
 </LinearLayout>

@@ -24,10 +24,10 @@ import com.ld_zxb.application.DCApplication;
 import com.ld_zxb.config.Constants;
 import com.ld_zxb.controller.BaseHandler;
 import com.ld_zxb.controller.RequestCommant;
-import com.ld_zxb.entity.InformationEntity;
+import com.ld_zxb.entity.infor;
 import com.ld_zxb.fragment.BaseBackFragment;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,9 +41,15 @@ public class VpSimpleFragmentA extends BaseBackFragment {
 	private List<Map<String, Object>> data;
 	private PullToRefreshListView mPullToRefreshListView;
 	private DCApplication mApplication;
-	InformationEntity info;
-	List<InformationEntity.EntityBean.ArticleListBean> infordata;
+	infor info;
+	List<infor.EntityBean.NewsBean> infordata;
 	mApdater mapdater ;
+	private DisplayImageOptions options = new DisplayImageOptions.Builder()
+			.cacheInMemory(true).cacheOnDisk(true)
+			.showImageForEmptyUri(R.drawable.default_picture)
+			.showImageOnFail(R.drawable.default_picture)
+			.showImageOnLoading(R.drawable.default_picture).build();
+
 	private class requetHandle extends BaseHandler {
 		public requetHandle(Activity activity) {
 			super(activity);
@@ -53,18 +59,22 @@ public class VpSimpleFragmentA extends BaseBackFragment {
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
 			if(msg.what == Constants.INFORMATION){
+				mPullToRefreshListView.onRefreshComplete();
 				if(command.success){
-					info = (InformationEntity) command.resData;
-					infordata = info.getEntity().getArticleList();
+					info = (infor) command.resData;
+					infordata = info.getEntity().getNews();
 					mapdater = new mApdater(getActivity(),infordata);
 					mPullToRefreshListView.setAdapter(mapdater);
 					mPullToRefreshListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 						@Override
 						public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 							Intent in = new Intent(getActivity(),InformationContext.class);
-							in.putExtra("InforID",infordata.get(position-1).getId());
+							in.putExtra("InforID",infordata.get(position-1).getZj());
 							in.putExtra("InforTitle",infordata.get(position-1).getTitle());
-							in.putExtra("InforContext",infordata.get(position-1).getDescription());
+							in.putExtra("InforContext",infordata.get(position-1).getContent());
+							in.putExtra("InforAuthor",infordata.get(position-1).getAuthor());
+							in.putExtra("InforSource",infordata.get(position-1).getSource());
+							in.putExtra("inforTimer", infordata.get(position-1).getColstr10());
 							startActivity(in);
 						}
 					});
@@ -76,8 +86,8 @@ public class VpSimpleFragmentA extends BaseBackFragment {
 	private void initData() {
 		HashMap<String, String> hashmap = new HashMap<String, String>();
 
-		hashmap.put("currentPage", "1");
-		hashmap.put("pageSize", "3");
+//		hashmap.put("currentPage", "1");
+//		hashmap.put("pageSize", "3");
 
 		new RequestCommant().requestInformation(new requetHandle(getActivity()), getActivity(), hashmap);
 	}
@@ -91,7 +101,7 @@ public class VpSimpleFragmentA extends BaseBackFragment {
 			mTitle = bundle.getString(BUNDLE_TITLE);
 			position=bundle.getInt("position");
 		}
-		data = getData();
+
 		view = inflater.inflate(R.layout.information_pull, null);
 		bindViews();
 		initData();
@@ -120,16 +130,12 @@ public class VpSimpleFragmentA extends BaseBackFragment {
 
 			@Override
 			public void onPullDownToRefresh(PullToRefreshBase refreshView) {
-//                reSetPullToRefreshGridView();
-//                requestDoctorListpageNo();
-//				initData();
+				initData();
 			}
 
 			@Override
 			public void onPullUpToRefresh(PullToRefreshBase refreshView) {
-//                urls.clear();
-//                requestDoctorListpageNo();
-//				initData();
+				initData();
 			}
 		});
 	}
@@ -143,26 +149,13 @@ public class VpSimpleFragmentA extends BaseBackFragment {
 		return fragment;
 
 	}
-	private List<Map<String, Object>> getData()
-	{
-		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-		Map<String, Object> map;
-		for(int i=0;i<10;i++)
-		{
-			map = new HashMap<String, Object>();
-			map.put("img", R.drawable.ic_img_profile_bg);
-			map.put("title", "我家酸奶没了  面都没见着");
-			map.put("info", "2016.5.18 13:00");
-			list.add(map);
-		}
-		return list;
-	}
+
 
 
 	class mApdater extends BaseAdapter {
-		List<InformationEntity.EntityBean.ArticleListBean> infos;
+		List<infor.EntityBean.NewsBean> infos;
 		private LayoutInflater mInflater = null;
-		private mApdater(Context context,List<InformationEntity.EntityBean.ArticleListBean> infor){
+		private mApdater(Context context,List<infor.EntityBean.NewsBean> infor){
 			this.mInflater = LayoutInflater.from(context);
 			this.infos = infor;
 		}
@@ -197,8 +190,9 @@ public class VpSimpleFragmentA extends BaseBackFragment {
 
 			}
 //			viewHolder.info_icon.setImageBitmap(infos.get(position).getPicture());
+//			ImageLoader.getInstance().displayImage(infos.get(position).getPicture(),viewHolder.info_icon,options);
 			viewHolder.tv_title.setText(infos.get(position).getTitle());
-			viewHolder.tv_time.setText(infos.get(position).getUpdateTime());
+			viewHolder.tv_time.setText(infos.get(position).getColstr10());
 			return view;
 		}
 	}

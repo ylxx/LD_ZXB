@@ -1,11 +1,12 @@
 package com.ld_zxb.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by 派大星 on 2016/6/1 0001.
  */
-public class InformationEntity {
+public class InformationEntity implements Serializable{
 
     /**
      * message : 查询成功

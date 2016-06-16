@@ -16,14 +16,18 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ecloud.pulltozoomview.PullToZoomScrollViewEx;
 import com.ld_zxb.R;
 import com.ld_zxb.activity.BaseFragmentActivity;
+import com.ld_zxb.activity.login.LoginActivity;
 import com.ld_zxb.config.Constants;
 import com.ld_zxb.controller.BaseHandler;
 import com.ld_zxb.controller.RequestCommant;
 import com.ld_zxb.entity.MineEntity;
+import com.ld_zxb.utils.SerialUtils;
+import com.ld_zxb.vo.UserLoginBodyVo;
 
 import java.io.File;
 import java.util.HashMap;
@@ -52,7 +56,8 @@ public class PullToZoomScrollActivity extends BaseFragmentActivity implements Vi
     private File tempFile;
     private MineEntity mineEntity;
     private TextView pullMine_phone,pullMine_email,pullMine_nickname,head_username;
-
+    private SerialUtils serialutols;
+    private int userId;
     private class requetHandle extends BaseHandler {
         public requetHandle(Activity activity) {
             super(activity);
@@ -78,6 +83,21 @@ public class PullToZoomScrollActivity extends BaseFragmentActivity implements Vi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pull_to_zoom_scroll_view);
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        serialutols = new SerialUtils();
+        if(serialutols.getObject(this)==null){
+            Toast.makeText(this, "收藏的课程！", Toast.LENGTH_LONG).show();
+            startActivity(new Intent(this,LoginActivity.class));
+        }else{
+            try {
+                UserLoginBodyVo userinfo = serialutols.deSerialization(serialutols.getObject(this));
+                //用户Id(非268)
+                userId=userinfo.getBody().getId();
+
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
         initView();
         loadViewForCode();
         scrollView = (PullToZoomScrollViewEx) findViewById(R.id.scroll_view);
@@ -124,13 +144,13 @@ public class PullToZoomScrollActivity extends BaseFragmentActivity implements Vi
     }
     public void getUserinfo() {
         HashMap<String, String> hashmap = new HashMap<String, String>();
-        hashmap.put("userId", "27604");//用户id
+        hashmap.put("userId", ""+userId);//用户id
         new RequestCommant().requestUserInfo(new requetHandle(this),this,hashmap);
     }
     public void chagePhoto(){
         HashMap<String, String> hashmap = new HashMap<String, String>();
         hashmap.put("avatar", "1");//用户头像地址
-        hashmap.put("userId", "27604");//用户id
+        hashmap.put("userId", ""+userId);//用户id
         new RequestCommant().requestUserPhoto(new requetHandle(this),this,hashmap);
     }
 
@@ -287,58 +307,4 @@ public class PullToZoomScrollActivity extends BaseFragmentActivity implements Vi
             }
         }
     }
-//    /*
-//      * 上传图片
-//      */
-//    public void upload(View view) {
-//        try {
-//            ByteArrayOutputStream out = new ByteArrayOutputStream();
-//            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
-//            out.flush();
-//            out.close();
-//            byte[] buffer = out.toByteArray();
-//
-//            byte[] encode = Base64.encode(buffer, Base64.DEFAULT);
-//            String photo = new String(encode);
-//
-//            RequestParams params = new RequestParams();
-//            params.put("photo", photo);
-//            String url = "http://110.65.99.66:8080/jerry/UploadImgServlet";
-//
-//            AsyncHttpClient client = new AsyncHttpClient();
-//            client.post(url, params, new AsyncHttpResponseHandler() {
-//                @Override
-//                public void onSuccess(int statusCode, Header[] headers,
-//                                      byte[] responseBody) {
-//                    try {
-//                        if (statusCode == 200) {
-//
-//                            Toast.makeText(PullToZoomScrollActivity.this, "头像上传成功!", 0)
-//                                    .show();
-//                        } else {
-//                            Toast.makeText(PullToZoomScrollActivity.this,
-//                                    "网络访问异常，错误码：" + statusCode, 0).show();
-//
-//                        }
-//                    } catch (Exception e) {
-//                        // TODO Auto-generated catch block
-//                        e.printStackTrace();
-//                    }
-//                }
-//
-//                @Override
-//                public void onFailure(int statusCode, Header[] headers,
-//                                      byte[] responseBody, Throwable error) {
-//                    Toast.makeText(PullToZoomScrollActivity.this,
-//                            "网络访问异常，错误码  > " + statusCode, 0).show();
-//
-//                }
-//            });
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-
 }

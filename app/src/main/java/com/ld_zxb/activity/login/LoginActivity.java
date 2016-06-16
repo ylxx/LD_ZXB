@@ -7,7 +7,6 @@ import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.ld_zxb.R;
 import com.ld_zxb.activity.BaseFragmentActivity;
@@ -44,20 +43,20 @@ public class LoginActivity extends BaseFragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         serialutols = new SerialUtils();
-        /*if(serialutols.getObject(this)==null){
-            Toast.makeText(this, "请先登录再查看视频列表！", Toast.LENGTH_LONG).show();
-            startActivity(new Intent(this,LoginActivity.class));
-        }else{
-            try {
-                UserLoginBodyVo userinfo = serialutols.deSerialization(serialutols.getObject(this));
-                //用户Id(非268)
-                userId=userinfo.getBody().getId();
-
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }*/
+//        if(serialutols.getObject(this)==null){
+//            Toast.makeText(this, "请先登录再查看视频列表！", Toast.LENGTH_LONG).show();
+//            startActivity(new Intent(this,LoginActivity.class));
+//        }else{
+//            try {
+//                UserLoginBodyVo userinfo = serialutols.deSerialization(serialutols.getObject(this));
+//                //用户Id(非268)
+//                userId=userinfo.getBody().getId();
+//
+//            } catch (Exception e) {
+//                // TODO Auto-generated catch block
+//                e.printStackTrace();
+//            }
+//        }
 
 
         setContentViewWithActionBar(R.layout.activity_login,"课程","登录");
