@@ -35,7 +35,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class SearchActivity extends BaseFragmentActivity {
-    private TextView search_clase,tv_ifm,tv_zhiyedaode,tv_caiwuguanli,tv_gaojicaiwu,tv_yusuan,tv_qiye,tv_nashui,tv_jinrong,tv_gongsi,tv_fengxian,tv_caiwufenxi;
+    private TextView tv_search,tv_ifm,tv_zhiyedaode,tv_caiwuguanli,tv_gaojicaiwu,tv_yusuan,tv_qiye,tv_nashui,tv_jinrong,tv_gongsi,tv_fengxian,tv_caiwufenxi;
     private EditText et_context;
     ListView lv_search;
     private String ifm,zhiyedaode,caiwuguanli,gaojicaiwu,yusuan,qiye,nashui,jinrong,gongsi,fengxian,caiwufenxi;
@@ -77,12 +77,12 @@ public class SearchActivity extends BaseFragmentActivity {
         setContentViewWithActionBar(R.layout.activity_search,"课程","搜索");
         setupActionBar();
         initView();
-        lv_search = (ListView) findViewById(R.id.search_Listview);
+//        lv_search = (ListView) findViewById(R.id.search_Listview);
 
     }
 
     private void initView() {
-//        search_clase = (TextView) findViewById(R.id.search_clase);
+        tv_search = (TextView) findViewById(R.id.tv_search);
         et_context = (EditText) findViewById(R.id.et_context);
         tv_ifm = (TextView) findViewById(R.id.tv_ifm);
         tv_zhiyedaode = (TextView) findViewById(R.id.tv_zhiyedaode);
@@ -95,14 +95,8 @@ public class SearchActivity extends BaseFragmentActivity {
         tv_gongsi = (TextView) findViewById(R.id.tv_gongsi);
         tv_fengxian = (TextView) findViewById(R.id.tv_fengxian);
         tv_caiwufenxi = (TextView) findViewById(R.id.tv_caiwufenxi);
-        tv_ifm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ifm = "IFM";
-                initdata(ifm);
-            }
-        });
-        ClickUtil.setClickListener(listener,search_clase,et_context,tv_ifm,tv_zhiyedaode,tv_caiwuguanli,tv_gaojicaiwu,tv_yusuan,tv_qiye,tv_nashui,tv_jinrong,tv_gongsi,tv_fengxian,tv_caiwufenxi);
+
+        ClickUtil.setClickListener(listener,tv_search,et_context,tv_ifm,tv_zhiyedaode,tv_caiwuguanli,tv_gaojicaiwu,tv_yusuan,tv_qiye,tv_nashui,tv_jinrong,tv_gongsi,tv_fengxian,tv_caiwufenxi);
         et_context.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -112,11 +106,11 @@ public class SearchActivity extends BaseFragmentActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 //这是文本框改变之前会执行的动作
-                String data = et_context.getText().toString().trim();
-                HashMap<String, String> hashmap = new HashMap<String, String>();
-                hashmap.put("currentPage", "1");
-                hashmap.put("courseName", ""+data);//搜索内容
-                new RequestCommant().requestSearch(new requetHandle(SearchActivity.this),SearchActivity.this, hashmap);
+//                String data = et_context.getText().toString().trim();
+//                HashMap<String, String> hashmap = new HashMap<String, String>();
+//                hashmap.put("currentPage", "1");
+//                hashmap.put("courseName", ""+data);//搜索内容
+//                new RequestCommant().requestSearch(new requetHandle(SearchActivity.this),SearchActivity.this, hashmap);
             }
 
             @Override
@@ -141,52 +135,89 @@ public class SearchActivity extends BaseFragmentActivity {
         @Override
         public void onClick(View v) {
             switch (v.getId()){
-                case R.id.et_context:
-
-                break;
+                case R.id.tv_search:
+                        Toast.makeText(SearchActivity.this, "开始搜索", Toast.LENGTH_SHORT).show();
+                        String content = et_context.getText().toString().trim();
+                        Intent in = new Intent(SearchActivity.this,SearchContent.class);
+                        in.putExtra("Content",""+content);
+                        startActivity(in);
+                    break;
                 case R.id.tv_ifm:
-                    ifm = "IFM";
-                    initdata(ifm);
+                        ifm = "IFM";
+                        et_context.setText(ifm);
+//                        Intent in_ifm = new Intent(SearchActivity.this,SearchContent.class);
+//                        in_ifm.putExtra("Search_ifm",""+ifm);
+//                        startActivity(in_ifm);
                     break;
                 case R.id.tv_zhiyedaode:
-                   zhiyedaode ="职业道德";
-                    initdata(zhiyedaode);
+                        zhiyedaode ="职业道德";
+                    et_context.setText(zhiyedaode);
+//                        Intent in_daode = new Intent(SearchActivity.this,SearchContent.class);
+//                        in_daode.putExtra("Search_daode",""+zhiyedaode);
+//                        startActivity(in_daode);
                     break;
                 case R.id.tv_lilun:
-                    caiwuguanli = "财务管理理论";
-                    initdata(caiwuguanli);
+                        caiwuguanli = "财务管理理论";
+                    et_context.setText(caiwuguanli);
+//                        Intent in_caiwulilun = new Intent(SearchActivity.this,SearchContent.class);
+//                        in_caiwulilun.putExtra("Search_caiwulilun",""+caiwuguanli);
+//                        startActivity(in_caiwulilun);
                     break;
                 case R.id.tv_gjcwgl:
-                    gaojicaiwu = "高级财务管理";
-                    initdata(gaojicaiwu);
+                        gaojicaiwu = "高级财务管理";
+                    et_context.setText(caiwuguanli);
+//                        Intent in_gcgl = new Intent(SearchActivity.this,SearchContent.class);
+//                        in_gcgl.putExtra("Search_gcgl",""+gaojicaiwu);
+//                        startActivity(in_gcgl);
                     break;
                 case R.id.tv_yusuan:
-                    yusuan = "预算管理";
-                    initdata(yusuan);
+                        yusuan = "预算管理";
+                    et_context.setText(yusuan);
+//                        Intent in_yusuan = new Intent(SearchActivity.this,SearchContent.class);
+//                        in_yusuan.putExtra("Search_yusuan",""+yusuan);
+//                        startActivity(in_yusuan);
                     break;
                 case R.id.tv_qiye:
-                    qiye = "企业并购与重组";
-                    initdata(qiye);
+                        qiye = "企业并购与重组";
+                    et_context.setText(qiye);
+//                        Intent in_qiye = new Intent(SearchActivity.this,SearchContent.class);
+//                        in_qiye.putExtra("Search_qiye",""+qiye);
+//                        startActivity(in_qiye);
                     break;
                 case R.id.tv_nashui:
-                    nashui = "纳税管理";
-                    initdata(nashui);
+                        nashui = "纳税管理";
+                    et_context.setText(nashui);
+//                        Intent in_nashui = new Intent(SearchActivity.this,SearchContent.class);
+//                        in_nashui.putExtra("Search_nashui",""+nashui);
+//                        startActivity(in_nashui);
                     break;
                 case R.id.tv_gongsi:
-                    gongsi = "金融工具";
-                    initdata(gongsi);
+                        gongsi = "公司战略";
+                    et_context.setText(gongsi);
+//                        Intent in_gongsi = new Intent(SearchActivity.this,SearchContent.class);
+//                        in_gongsi.putExtra("Search_gongsi",""+gongsi);
+//                        startActivity(in_gongsi);
                     break;
                 case R.id.tv_jinrong:
-                    jinrong = "公司战略";
-                    initdata(jinrong);
+                        jinrong = "金融工具";
+                    et_context.setText(jinrong);
+//                        Intent in_jinrong = new Intent(SearchActivity.this,SearchContent.class);
+//                        in_jinrong.putExtra("Search_jinrong",""+jinrong);
+//                        startActivity(in_jinrong);
                     break;
                 case R.id.tv_fengxian:
-                    fengxian = "风险管理";
-                    initdata(fengxian);
+                        fengxian = "风险管理";
+                    et_context.setText(fengxian);
+//                        Intent in_fengxian = new Intent(SearchActivity.this,SearchContent.class);
+//                        in_fengxian.putExtra("Search_fengxian",""+fengxian);
+//                        startActivity(in_fengxian);
                     break;
                 case R.id.tv_caiwufenxi:
-                    caiwufenxi = "财务分析";
-                    initdata(caiwufenxi);
+                        caiwufenxi = "财务分析";
+                    et_context.setText(caiwufenxi);
+//                        Intent in_caiwufenxi = new Intent(SearchActivity.this,SearchContent.class);
+//                        in_caiwufenxi.putExtra("Search_caiwufenxi",""+caiwufenxi);
+//                        startActivity(in_caiwufenxi);
                     break;
             }
         }
