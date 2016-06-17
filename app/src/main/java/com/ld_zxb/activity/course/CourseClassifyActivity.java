@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.ld_zxb.R;
@@ -27,7 +28,7 @@ public class CourseClassifyActivity extends BaseFragmentActivity {
     private List<String> mTitles = Arrays.asList("单证考试", "双证考试");
     private List<Fragment> mContents = new ArrayList<Fragment>();
     private FragmentPagerAdapter mAdapter;
-    private RelativeLayout rl3;
+    private LinearLayout ll3;
     private ImageView iv_courseclass_down;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,14 +52,14 @@ public class CourseClassifyActivity extends BaseFragmentActivity {
         mIndictor = (ViewPagerIndictor) findViewById(R.id.id_courseclassify_indictor);
         mViewPager = (ViewPager) findViewById(R.id.id_courseclassify_viewPager);
         iv_courseclass_down = (ImageView) findViewById(R.id.iv_courseclass_down);
-        rl3 = (RelativeLayout) findViewById(R.id.course_rl3);
+        ll3 = (LinearLayout) findViewById(R.id.course_ll3);
         iv_courseclass_down.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(i==0){
-                    rl3.setVisibility(View.GONE);i++;
+                    ll3.setVisibility(View.GONE);i++;
                 }else{
-                    rl3.setVisibility(View.VISIBLE);i=0;
+                    ll3.setVisibility(View.VISIBLE);i=0;
                 }
             }
         });

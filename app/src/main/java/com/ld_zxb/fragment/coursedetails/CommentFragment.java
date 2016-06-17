@@ -19,6 +19,7 @@ public class CommentFragment extends Fragment {
     private String mTitle;
     private int position;
     private static final String BUNDLE_TITLE = "title";
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -28,7 +29,7 @@ public class CommentFragment extends Fragment {
             mTitle = bundle.getString(BUNDLE_TITLE);
         }
 
-        view = inflater.inflate(R.layout.fragment_course_comment,null);
+        view = inflater.inflate(R.layout.fragment_course_comment, null);
         return view;
     }
 
@@ -42,7 +43,7 @@ public class CommentFragment extends Fragment {
 
     }*/
 
-    public static CommentFragment newInstance(String title,int position) {
+    public static CommentFragment newInstance(String title, int position) {
         Bundle bundle = new Bundle();
         bundle.putString(BUNDLE_TITLE, title);
         bundle.putInt("position", position);

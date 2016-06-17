@@ -36,6 +36,7 @@ import com.ld_zxb.view.FlashView;
 import com.ld_zxb.view.FlashViewListener;
 import com.ld_zxb.vo.HomePageBodyVo;
 import com.ld_zxb.vo.HomePageBottomEntityBodyVo;
+import com.ld_zxb.vo.HomePageBottomEntityBodyVo.CourseList;
 import com.ld_zxb.vo.HomePageBottomEntityVo;
 import com.ld_zxb.vo.HomePageImageVo;
 import com.ld_zxb.vo.UserLoginBodyVo;
@@ -70,7 +71,8 @@ public class HomePageFragment extends BaseBackFragment {
     private List<HomePageImageVo> lsBanner;
     private int userId;
     //bottom轮播图相关
-    private List<HomePageBottomEntityBodyVo.CourseList> courseLists = new ArrayList<HomePageBottomEntityBodyVo.CourseList>();
+    private List<CourseList> courseLists = new ArrayList<CourseList>();
+    private List<CourseList> courseList = new ArrayList<CourseList>();
 
     @Override
     public void onAttach(Context context) {
@@ -188,6 +190,86 @@ public class HomePageFragment extends BaseBackFragment {
     }
 
 
+    private void addList() {
+        courseList.clear();
+        courseLists.clear();
+        List<String> l1 = new ArrayList<String>();
+        l1.add("赵国宇");
+        HomePageBottomEntityBodyVo.CourseList course1 = new HomePageBottomEntityBodyVo.CourseList();
+        course1.setCourseId(173);
+        course1.setName("赵国宇");
+        course1.setTitle("企业并购与重组");
+        course1.setLogo("/upload/mavendemo/course/20150820/1440073290946797266.jpg");
+        course1.setTeacherList(l1);
+        courseList.add(course1);
+
+        List<String> l2 = new ArrayList<String>();
+        l2.add("雷宇，佟爱琴");
+        HomePageBottomEntityBodyVo.CourseList course2 = new HomePageBottomEntityBodyVo.CourseList();
+        course2.setCourseId(172);
+        course2.setName("雷宇，佟爱琴");
+        course2.setTitle("公司战略与财务");
+        course2.setLogo("/upload/mavendemo/course/20150820/1440073211538233379.jpg");
+        course2.setTeacherList(l2);
+        courseList.add(course2);
+
+        List<String> l3 = new ArrayList<String>();
+        l3.add("郭剑花，曹中");
+        HomePageBottomEntityBodyVo.CourseList course3 = new HomePageBottomEntityBodyVo.CourseList();
+        course3.setCourseId(171);
+        course3.setName("郭剑花，曹中");
+        course3.setTitle("财务分析工具");
+        course3.setLogo("/upload/mavendemo/course/20150820/1440072627737519719.jpg");
+        course3.setTeacherList(l3);
+        courseList.add(course3);
+
+        List<String> l4 = new ArrayList<String>();
+        l4.add("黄金波，高慧");
+        HomePageBottomEntityBodyVo.CourseList course4 = new HomePageBottomEntityBodyVo.CourseList();
+        course4.setCourseId(157);
+        course4.setName("黄金波，高慧");
+        course4.setTitle("金融工具");
+        course4.setLogo("/upload/mavendemo/course/20150819/1439948730322647415.jpg");
+        course4.setTeacherList(l4);
+        courseList.add(course4);
+
+        List<String> l5 = new ArrayList<String>();
+        l5.add("闵岳，徐习兵");
+        HomePageBottomEntityBodyVo.CourseList course5 = new HomePageBottomEntityBodyVo.CourseList();
+        course5.setCourseId(156);
+        course5.setName("闵岳，徐习兵");
+        course5.setTitle("全面预算管理");
+        course5.setLogo("/upload/mavendemo/course/20150818/1439888374802858802.jpg");
+        course5.setTeacherList(l5);
+        courseList.add(course5);
+
+        List<String> l6 = new ArrayList<String>();
+        l4.add("郭葆春");
+        HomePageBottomEntityBodyVo.CourseList course6 = new HomePageBottomEntityBodyVo.CourseList();
+        course6.setCourseId(155);
+        course6.setName("郭葆春");
+        course6.setTitle("财务管理法规与职业道德");
+        course6.setLogo("/upload/mavendemo/course/20150818/1439887623304361079.jpg");
+        course6.setTeacherList(l6);
+        courseList.add(course6);
+
+        List<String> l7 = new ArrayList<String>();
+        l4.add("沈雅琴，潘敏虹");
+        HomePageBottomEntityBodyVo.CourseList course7 = new HomePageBottomEntityBodyVo.CourseList();
+        course7.setCourseId(159);
+        course7.setName("沈雅琴，潘敏虹");
+        course7.setTitle("风险管理");
+        course7.setLogo("/upload/mavendemo/course/20150820/1440043014076009235.jpg");
+        course7.setTeacherList(l7);
+        courseList.add(course7);
+
+        courseLists.addAll(courseList);
+
+    }
+
+
+
+
     /**
      * 监听事件
      */
@@ -299,8 +381,10 @@ public class HomePageFragment extends BaseBackFragment {
                     if (command.success) {
                         mPullToRefreshListView.onRefreshComplete();
                         if(null != command.resData){
-                            HomePageBottomEntityVo homePageBottomEntityVo = (HomePageBottomEntityVo)command.resData;
-                            courseLists = homePageBottomEntityVo.getEntity().getCourseList();
+                            /*HomePageBottomEntityVo homePageBottomEntityVo = (HomePageBottomEntityVo)command.resData;
+                            courseLists = homePageBottomEntityVo.getEntity().getCourseList();*/
+
+                            addList();
 
                             adapter = new HomePageAdapter(getActivity(), courseLists);
                             mPullToRefreshListView.setAdapter(adapter);
